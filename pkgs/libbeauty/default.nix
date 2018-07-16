@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, autoreconfHook, llvm, binutils, libiberty, lit, ncurses5, zlib }:
+{ stdenv, fetchFromGitHub, autoreconfHook, llvm, libbfd, libiberty, lit, ncurses5, zlib }:
 
 stdenv.mkDerivation rec {
   name = "libbeauty-${version}";
@@ -10,10 +10,11 @@ stdenv.mkDerivation rec {
     sha256 = "1ld527csfaz3jgdvkrdnmv2b7lnl4nisk3s0ajjb00c8zpk0a2x1";
   };
 
-  buildInputs = [ autoreconfHook llvm binutils libiberty lit ncurses5 zlib ];
+  nativeBuildInputs = [ autoreconfHook lit ];
+  buildInputs = [ llvm libbfd libiberty ncurses5 zlib ];
 
   setSourceRoot = ''
-    cd libbeauty-*/libbeauty
+    cd */libbeauty
     sourceRoot=$PWD
   '';
 
