@@ -6,6 +6,10 @@ rec {
 
   diva = callPackage ./pkgs/diva { };
 
+  dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
+    inherit (pkgs.llvmPackages_5) llvm;
+  };
+
   fcd4 = callPackage ./pkgs/fcd/4.nix { };
   fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
