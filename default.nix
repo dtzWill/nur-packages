@@ -4,6 +4,9 @@
 rec {
   diva = callPackage ./pkgs/diva { };
 
+  fcd4 = callPackage ./pkgs/fcd/4.nix { };
+  fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
+
   publib = callPackage ./pkgs/publib { };
   slinky = callPackage ./pkgs/slinky { inherit publib; };
   slinky32 = pkgs.pkgsi686Linux.callPackage ./pkgs/slinky { inherit publib; };
