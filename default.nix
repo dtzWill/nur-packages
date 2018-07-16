@@ -10,6 +10,9 @@ rec {
   llvm2kittel = callPackage ./pkgs/llvm2kittel {
     inherit (pkgs.llvmPackages_4) llvm;
   };
+  kittel-koat = callPackage ./pkgs/kittel-koat {
+    ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
+  };
 
   publib = callPackage ./pkgs/publib { };
   slinky = callPackage ./pkgs/slinky { inherit publib; };
