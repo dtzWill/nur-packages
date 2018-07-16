@@ -1,10 +1,16 @@
-{ stdenv, lit, llvm, fetchgit }:
+{ stdenv, lit, llvm, fetchFromGitHub }:
 
-with import ./src.nix;
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   name = "llvmslicer-${version}";
-  src = fetchgit srcinfo;
-  inherit version;
+  version = "2016-09-25";
+
+  src = fetchFromGitHub {
+    owner = "sdasgup3";
+    repo = "llvm-slicer";
+    rev = "a50ba9555155bb830cda6d91c545a406f97d2c30";
+    sha256 = "0vcs8bw38ybd94maa1ks44cnc3zfv2gz6b0nfk8pmlgzcn71nwjb";
+  };
+
   doCheck = true;
   enableParallelBuilding = true;
 
