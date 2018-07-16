@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ lit llvm ];
 
   meta = with stdenv.lib; {
-    description = "Slicer for LLVM 3.5";
+    description = "Static Slicer for LLVM 3.5";
     license = licenses.ncsa;
     homepage = https://github.com/sdasgup3/llvm-slicer;
   };
