@@ -2,6 +2,8 @@
 
 
 rec {
+  alive = callPackage ./pkgs/alive { };
+
   diva = callPackage ./pkgs/diva { };
 
   fcd4 = callPackage ./pkgs/fcd/4.nix { };
