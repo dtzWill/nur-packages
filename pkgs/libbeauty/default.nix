@@ -44,4 +44,7 @@ stdenv.mkDerivation rec {
     touch lit.site.cfg.dummy
     PATH=$PWD/test:$PATH lit -s -v . -D llvm_site_config=$PWD/lit.site.cfg.dummy
   '';
+
+  # missing 'dis-asm.h' from binutils-gdb, probably just need to find the right package
+  meta.broken = true;
 }
