@@ -1,0 +1,27 @@
+From 3d3f1a5257e5081512200cc3e74f9fa788da63d7 Mon Sep 17 00:00:00 2001
+From: Will Dietz <w@wdtz.org>
+Date: Sun, 11 Dec 2016 17:43:42 -0600
+Subject: [PATCH 5/5] Makefile: Set stack size RTS during build.
+
+spec test tries to do this but apparently it's too late by that point,
+or we need to build with RTS or something.
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 2f1c087..2115c70 100644
+--- a/Makefile
++++ b/Makefile
+@@ -4,7 +4,7 @@
+ .SUFFIXES:
+ .SECONDARY:
+ 
+-FLAGS := -Wall -fno-warn-unused-do-bind
++FLAGS := -Wall -fno-warn-unused-do-bind -rtsopts
+ HS := $(shell find . -name "*hs") MD/Binary.hs
+ 
+ validate: ${HS}
+-- 
+2.10.0
+
