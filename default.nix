@@ -4,8 +4,6 @@
 rec {
   alive = callPackage ./pkgs/alive { };
 
-  capstone2llvmir = callPackage ./pkgs/capstone2llvmir { };
-
   diva = callPackage ./pkgs/diva { };
 
   dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
