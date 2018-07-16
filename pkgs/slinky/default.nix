@@ -12,7 +12,7 @@ let
   buildInputs = prelinkDeps ++ [ publib tcsh tcl ];
 
   prelink = stdenv.mkDerivation {
-    name = "slinky-${version}";
+    name = "slinky-prelink${version}";
     inherit src version;
 
     postUnpack = "export sourceRoot=$sourceRoot/slinky/prelink";
@@ -25,7 +25,7 @@ let
   };
 
   slinky = stdenv.mkDerivation {
-    name = "slink-${version}";
+    name = "slinky-${version}";
     inherit src version;
 
     postUnpack = "export sourceRoot=$sourceRoot/slinky/src";
