@@ -19,6 +19,9 @@ rec {
   libbeauty = callPackage ./pkgs/libbeauty {
     inherit (pkgs.llvmPackages_4) stdenv llvm;
   };
+  libebc = callPackage ./pkgs/libebc {
+    inherit (pkgs.llvmPackages_4) llvm;
+  };
   llvm2kittel = callPackage ./pkgs/llvm2kittel {
     inherit (pkgs.llvmPackages_4) llvm;
   };
