@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, autoreconfHook, llvm, libbfd, libiberty, lit, ncurses5, zlib }:
+{ stdenv, fetchFromGitHub, autoreconfHook, llvm, libbfd, libiberty, libopcodes, lit, ncurses5, zlib }:
 
 stdenv.mkDerivation rec {
   name = "libbeauty-${version}";
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ autoreconfHook lit ];
-  buildInputs = [ llvm libbfd libiberty ncurses5 zlib ];
+  buildInputs = [ llvm libbfd libiberty libopcodes ncurses5 zlib ];
 
   setSourceRoot = ''
     cd */libbeauty
@@ -45,6 +45,4 @@ stdenv.mkDerivation rec {
     PATH=$PWD/test:$PATH lit -s -v . -D llvm_site_config=$PWD/lit.site.cfg.dummy
   '';
 
-  # missing 'dis-asm.h' from binutils-gdb, probably just need to find the right package
-  meta.broken = true;
 }
