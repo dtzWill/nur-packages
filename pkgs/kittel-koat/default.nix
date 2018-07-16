@@ -14,7 +14,8 @@ ocamlPackages.buildOcaml rec {
     leaveDotGit = true;
   };
 
-  buildInputs = with ocamlPackages; [ git ocamlgraph makeWrapper ];
+  nativeBuildInputs = [ git makeWrapper ];
+  buildInputs = with ocamlPackages; [ ocamlgraph ];
 
   patchPhase = ''
     patchShebangs make_git_sha1.sh
@@ -34,7 +35,8 @@ ocamlPackages.buildOcaml rec {
     install -Dm755 {_build,$out/libexec}/koat.native
 
     mkdir -p $out/bin
-    makeWrapper "$out/libexec/kittel.native -smt-solver z3" $out/bin/kittel --prefix PATH : ${solverPath}
-    makeWrapper "$out/libexec/koat.native -smt-solver z3" $out/bin/koat --prefix PATH : ${solverPath}
+    for x in kittel koat; do
+      makeWrapper "$out/libexec/$x.native" $out/bin/$x --add-flags "-smt-solver z3" --prefix PATH : ${solverPath}
+    done
   '';
 }
