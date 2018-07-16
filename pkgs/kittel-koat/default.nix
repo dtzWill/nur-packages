@@ -39,4 +39,13 @@ ocamlPackages.buildOcaml rec {
       makeWrapper "$out/libexec/$x.native" $out/bin/$x --add-flags "-smt-solver z3" --prefix PATH : ${solverPath}
     done
   '';
+
+
+  meta = with stdenv.lib; {
+    description = "KITTeL/KoAT";
+    homepage = https://github.com/s-falke/kittel-koat;
+    license = licenses.asl20;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

@@ -23,4 +23,12 @@ stdenv.mkDerivation rec {
   installPhase = "install -Dm755 {,$out/bin/}llvm2kittel";
 
   enableParallelBuilding = true;
+
+  meta = with stdenv.lib; {
+    description = "llvm2KITTeL";
+    homepage = https://github.com/s-falke/llvm2kittel;
+    license = licenses.ncsa;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

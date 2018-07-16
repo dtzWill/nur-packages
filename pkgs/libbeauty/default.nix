@@ -45,4 +45,11 @@ stdenv.mkDerivation rec {
     PATH=$PWD/test:$PATH lit -s -v . -D llvm_site_config=$PWD/lit.site.cfg.dummy
   '';
 
+  meta = with stdenv.lib; {
+    description = "Decompiler and Reverse Engineering tool";
+    homepage = https://github.com/jcdutton/libbeauty;
+    license = licenses.gpl2;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

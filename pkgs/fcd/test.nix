@@ -52,4 +52,13 @@ in stdenv.mkDerivation rec {
     mkdir -p $out/
     mv SUMMARY.md error output $out/
   '';
+
+  meta = with stdenv.lib; {
+    description = "Tests for fcd";
+    homepage = https://zneak.github.io/fcd;
+    license = licenses.ncsa;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }
+

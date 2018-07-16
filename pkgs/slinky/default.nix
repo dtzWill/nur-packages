@@ -40,5 +40,13 @@ let
     #  substituteInPlace ../prelink/src/gather.c --replace "./ld-linux.so.2" "$(cat $NIX_CC/nix-support/dynamic-linker)"
     #  substituteInPlace ../prelink/src/get.c --replace "./ld-linux.so.2" "$(cat $NIX_CC/nix-support/dynamic-linker)"
     #'';
+
+    meta = {
+      description = "Static linking tools";
+      homepage = http://slinky.cs.arizona.edu/;
+      license = licenses.gpl2Plus;
+      maintainers = with maintainers; [ dtzWill ];
+      platforms = platforms.all;
+    };
   };
 in slinky

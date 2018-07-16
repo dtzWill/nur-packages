@@ -17,4 +17,12 @@ stdenv.mkDerivation rec {
     ./0004-Fix-spelling-errors-in-manpages.patch
     ./0005-Pass-LDFLAGS-to-test-programs.patch
   ];
+
+  meta = with stdenv.lib; {
+    description = "Heterogenous library for the C programming language";
+    homepage = https://code.google.com/archive/p/publib;
+    license = licenses.bsd2;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

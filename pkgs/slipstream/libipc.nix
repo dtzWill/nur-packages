@@ -19,4 +19,12 @@ stdenv.mkDerivation rec {
   installPhase = ''
     install -Dm755 {.,$out/lib}/libipc.so
   '';
+
+  meta = with stdenv.lib; {
+    description = "Slipstream library component";
+    homepage = https://wdtz.org/slipstream;
+    license = licenses.isc;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

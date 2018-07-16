@@ -38,4 +38,12 @@ stdenv.mkDerivation rec {
     mkdir -p $out/share/fcd/scripts
     cp ../scripts/*py $out/share/fcd/scripts
   '';
+
+  meta = with stdenv.lib; {
+    description = "An optimizing decompiler";
+    homepage = https://zneak.github.io/fcd;
+    license = licenses.ncsa;
+    maintainers = with maintainers; [ dtzWill ];
+    platforms = platforms.all;
+  };
 }

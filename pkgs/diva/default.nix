@@ -38,5 +38,10 @@ stdenv.mkDerivation rec {
   # TODO: Build dependencies from source as well,
   # instead of using the bundled pre-built libraries :(
 
-  # XXX: meta, 'unfree'?
+  meta = with stdenv.lib; {
+    description = "Debug Information Visual Analyzer";
+    homepage = https://github.com/SNSystems/DIVA;
+    license = licenses.unfree; # XXX ?
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }

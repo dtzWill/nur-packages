@@ -26,4 +26,11 @@ stdenv.mkDerivation rec {
   ];
 
   enableParallelBuilding = true;
+
+  meta = with stdenv.lib; {
+    description = "Reading type information from debug info section of executable";
+    homepage = https://github.com/sdasgup3/dwarf-type-reader;
+    license = licenses.mit;
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
