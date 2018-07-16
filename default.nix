@@ -25,6 +25,9 @@ rec {
   llvm2kittel = callPackage ./pkgs/llvm2kittel {
     inherit (pkgs.llvmPackages_4) llvm;
   };
+  llvmslicer = callPackage ./pkgs/llvmslicer {
+    inherit (pkgs.llvmPackages_35) llvm;
+  };
 
   publib = callPackage ./pkgs/publib { };
   slinky = callPackage ./pkgs/slinky { inherit publib; };
