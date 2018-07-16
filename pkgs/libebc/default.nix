@@ -31,5 +31,11 @@ stdenv.mkDerivation {
     install -D -t $out/include/ebc ../lib/include/ebc/*.h
     install -D -t $out/include/ebc/tuil ../lib/include/ebc/util/*.h
   '';
+
+  meta = with stdenv.lib; {
+    description = "C++ Library and Tool for Extracting Embedded Bitcode";
+    homepage = https://jdevlieghere.github.io/LibEBC;
+    license = licenses.asl20;
+  };
 }
 
