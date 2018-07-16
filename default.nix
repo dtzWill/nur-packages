@@ -7,11 +7,14 @@ rec {
   fcd4 = callPackage ./pkgs/fcd/4.nix { };
   fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
-  llvm2kittel = callPackage ./pkgs/llvm2kittel {
-    inherit (pkgs.llvmPackages_4) llvm;
-  };
   kittel-koat = callPackage ./pkgs/kittel-koat {
     ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
+  };
+  libbeauty = callPackage ./pkgs/libbeauty {
+    inherit (pkgs.llvmPackages_4) stdenv llvm;
+  };
+  llvm2kittel = callPackage ./pkgs/llvm2kittel {
+    inherit (pkgs.llvmPackages_4) llvm;
   };
 
   publib = callPackage ./pkgs/publib { };
