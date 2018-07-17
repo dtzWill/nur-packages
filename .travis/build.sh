@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 cachix push allvm --watch-store &
 
 nix-build ./.travis/test-release.nix -o result | cachix push allvm
 
-cachix push allvm ./result*
 
 # If triggered by cron, ensure build closure is pushed too
 if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
@@ -25,6 +24,10 @@ if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
     echo "done!"
   }
 
+  echo "Pushing build (and runtime) closures..."
   push_paths ./result*
 
+else
+  echo "Pushing runtime closures..."
+  cachix push allvm ./result*
 fi
