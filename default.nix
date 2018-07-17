@@ -13,6 +13,9 @@ rec {
   fcd4 = callPackage ./pkgs/fcd/4.nix { };
   fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
+  intelxed = callPackage ./pkgs/xed/default.nix { inherit mbuild; };
+  mbuild = callPackage ./pkgs/xed/mbuild.nix { };
+
   kittel-koat = callPackage ./pkgs/kittel-koat {
     ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
   };
