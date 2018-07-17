@@ -1,4 +1,4 @@
-{ nixpkgs ? <nixpkgs> }:
+{ nixpkgs ? (fetchTarball channel:nixos-unstable) }:
 
 # Evaluate 'release.nix' but don't abort on unfree, just log and skip
 
