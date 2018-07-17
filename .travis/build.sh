@@ -2,7 +2,7 @@
 
 cachix push allvm --watch-store &
 
-nix build -f ./.travis/test-release.nix -o result
+nix build -f ./.travis/test-release.nix $@ -o result
 
 # If triggered by cron, ensure build closure is pushed too
 if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
