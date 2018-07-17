@@ -1,4 +1,4 @@
-{ nixpkgs }:
+{ nixpkgs ? <nixpkgs> }:
 
 # Evaluate 'release.nix' but don't abort on unfree, just log and skip
 
