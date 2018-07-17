@@ -17,4 +17,9 @@ stdenv.mkDerivation {
     mkdir -p $out
     cp -ar * $out/
   '';
+
+  meta = with stdenv.lib; {
+    description = "python-based build system used for building XED";
+    license = licenses.asl20;
+  };
 }

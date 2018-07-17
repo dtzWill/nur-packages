@@ -25,4 +25,9 @@ stdenv.mkDerivation rec {
   installPhase = ''
     python ./mfile.py -j$NIX_BUILD_CORES --prefix=$out install
   '';
+
+  meta = with stdenv.lib; {
+    description = "x86 encoder decoder";
+    license = licenses.asl20;
+  };
 }
