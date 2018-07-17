@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, writeText, python2Packages, z3 }:
+{ stdenv, fetchFromGitHub, writeText, python, z3 }:
 
 let
   setuppy = writeText "setup.py" ''
@@ -27,7 +27,7 @@ let
     )
   '';
 in
-python2Packages.buildPythonApplication rec {
+python.pkgs.buildPythonApplication rec {
   name = "alive-${version}";
   version = "2018-03-03";
 
@@ -38,7 +38,7 @@ python2Packages.buildPythonApplication rec {
     sha256 = "1ixw96nynwysi5glyfxs5gxafyx41p6dj70l0w6and8yhnmqdd5z";
   };
 
-  propagatedNativeBuildInputs = [ z3 ];
+  propagatedBuildInputs = [ (z3.python or z3.out) ];
 
   postPatch = ''
     cp ${setuppy} setup.py
