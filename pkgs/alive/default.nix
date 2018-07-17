@@ -49,7 +49,7 @@ python.pkgs.buildPythonApplication rec {
   doCheck = true;
 
   checkPhase = ''
-    ./run-tests.sh
+    ${python.interpreter} tests/lit/lit.py -v tests
   '';
 
   meta = with stdenv.lib; {
