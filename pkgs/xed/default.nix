@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   name = "intelxed-${version}";
-  version = "2018-04-13";
+  version = "2018-07-02";
   src = fetchFromGitHub {
     owner = "intelxed";
     repo = "xed";
-    rev = "2be2d282939f6eb84e03e1fed9ba82f32c8bac2d";
-    sha256 = "1a9bc6hgcf0gm794cgkfkvi0n1hkww3fxm4apcvvl168fwm124n9";
+    rev = "00c6aac256c994688e54ea5c758e97ba34cd8ebe";
+    sha256 = "1757anm01nl0b7nqyh2bvgdrz5fhgvdyjpcx2nvg05v8icdj2xmh";
   };
 
   postUnpack = ''
