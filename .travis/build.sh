@@ -6,7 +6,7 @@ nix-build ./.travis/test-release.nix -o result | cachix push allvm
 
 
 # If triggered by cron, ensure build closure is pushed too
-if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
+if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
 
   function push_paths () {
     echo "realizing paths..."
