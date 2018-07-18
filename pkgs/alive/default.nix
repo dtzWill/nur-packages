@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, writeText, python, z3 }:
+{ stdenv, fetchFromGitHub, writeText, python, z3, runInstCombineTests ? false }:
 
 let
   setuppy = writeText "setup.py" ''
@@ -45,9 +45,9 @@ python.pkgs.buildPythonApplication rec {
 
     echo "from alive import main" >> __init__.py
   ''
-  + # Remove test that takes too long for travis
-  ''
-    rm ./tests/instcombine/andorxor.opt
+  #Remove these tests by default, they take very long (too long for travis)
+  + stdenv.lib.optionalString (!runInstCombineTests) ''
+    rm -rf ./tests/instcombine
   '';
 
   doCheck = true;
