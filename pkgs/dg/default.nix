@@ -32,6 +32,12 @@ stdenv.mkDerivation rec {
     substituteInPlace src/llvm/analysis/PointsTo/PointerSubgraph.cpp \
       --replace 'static_assert(sizeof(Offset::type) == sizeof(uint64_t))' \
                 'static_assert(sizeof(Offset::type) == sizeof(uint64_t), "offset type must be uint64_t")'
+
+    # Assertions cause program to abort (!), fix tests by flushing stdio first
+    # newer glibc (2.27+) no longer do this.
+    substituteInPlace tests/test_assert.c \
+      --replace 'assert(0 && "assertion failed");' \
+                'fflush(0); assert(0 && "assertion failed");'
   '';
 
   cmakeFlags = [
