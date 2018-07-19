@@ -15,6 +15,7 @@ rec {
   dg_4 = callPackage ./pkgs/dg {
     inherit (pkgs.llvmPackages_4) stdenv clang llvm;
   };
+  /*
   dg_39 = callPackage ./pkgs/dg {
     inherit (pkgs.llvmPackages_39) stdenv clang llvm;
   };
@@ -28,6 +29,7 @@ rec {
     inherit (pkgs.llvmPackages_35) llvm;
     clang = pkgs.clang_35;
   };
+  */
   dg = dg_4;
 
   diva = callPackage ./pkgs/diva { };
