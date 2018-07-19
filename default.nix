@@ -26,10 +26,6 @@ rec {
     inherit (pkgs.llvmPackages_35) llvm;
     clang = pkgs.clang_35;
   };
-  dg_34 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_34) llvm;
-    clang = pkgs.clang_34;
-  };
   dg = dg_4;
 
   diva = callPackage ./pkgs/diva { };
