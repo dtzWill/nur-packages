@@ -4,6 +4,8 @@
 rec {
   alive = callPackage ./pkgs/alive { };
 
+  ccontrol = callPackage ./pkgs/ccontrol { };
+
   dg_6 = callPackage ./pkgs/dg {
     inherit (pkgs.llvmPackages_6) stdenv clang llvm;
   };
