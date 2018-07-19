@@ -4,6 +4,34 @@
 rec {
   alive = callPackage ./pkgs/alive { };
 
+  dg_6 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_6) clang llvm;
+  };
+  dg_5 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_5) clang llvm;
+  };
+  dg_4 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_4) clang llvm;
+  };
+  dg_39 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_39) clang llvm;
+  };
+  dg_38 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_38) clang llvm;
+  };
+  dg_37 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_37) clang llvm;
+  };
+  dg_35 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_35) llvm;
+    clang = pkgs.clang_35;
+  };
+  dg_34 = callPackage ./pkgs/dg {
+    inherit (pkgs.llvmPackages_34) llvm;
+    clang = pkgs.clang_34;
+  };
+  dg = dg_4;
+
   diva = callPackage ./pkgs/diva { };
 
   dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
