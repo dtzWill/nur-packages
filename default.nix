@@ -1,9 +1,14 @@
 { pkgs }:
 
 
-with { inherit (pkgs) callPackage lib recurseIntoAttrs; };
 
-rec {
+let
+inherit (pkgs) recurseIntoAttrs;
+  callPackage = pkgs.newScope (self // {
+    # extras
+  });
+self = rec {
+  lib = pkgs.lib // import ./lib;
   alive = callPackage ./pkgs/alive { };
 
   # XXX: madness?
@@ -46,7 +51,7 @@ rec {
   fcd4 = callPackage ./pkgs/fcd/4.nix { };
   fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
-  intelxed = callPackage ./pkgs/xed/default.nix { inherit mbuild; };
+  intelxed = callPackage ./pkgs/xed/default.nix { };
   mbuild = callPackage ./pkgs/xed/mbuild.nix { };
 
   kittel-koat = callPackage ./pkgs/kittel-koat {
@@ -66,11 +71,11 @@ rec {
   };
 
   publib = callPackage ./pkgs/publib { };
-  slinky = callPackage ./pkgs/slinky { inherit publib; };
-  slinky32 = pkgs.pkgsi686Linux.callPackage ./pkgs/slinky { inherit publib; };
+  slinky = callPackage ./pkgs/slinky { };
+  # slinky32 = pkgs.pkgsi686Linux.callPackage ./pkgs/slinky { };
 
   slipstream-ipcd = callPackage ./pkgs/slipstream/ipcd.nix { };
-  slipstream-libipc = callPackage ./pkgs/slipstream/libipc.nix { inherit slipstream-ipcd; };
+  slipstream-libipc = callPackage ./pkgs/slipstream/libipc.nix { };
 
   svf_4 = callPackage ./pkgs/svf/4.nix { llvm = pkgs.llvm_4; };
   svf_6 = callPackage ./pkgs/svf { llvm = pkgs.llvm_6; };
@@ -85,4 +90,4 @@ rec {
     svf = svf_6;
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
-}
+}; in self
