@@ -7,6 +7,7 @@ let
   # O:)
   optionalAttrs = cond: attrs: if cond then attrs else {};
   optionalString = cond: str: if cond then str else "";
+  recurseIntoAttrs = attrs: attrs // { recurseForDerivations = true; };
 in
 rec {
   runsvf_on = bc: opts: runCommand "runsvf" {
@@ -64,7 +65,7 @@ rec {
     twopi = gvcmd { layout = "twopi"; options = "-Goverlap=prism -Granksep=5 -Gesep=0.5 -Gsep='+20' -Gsplines=true -Gconcentrate=true"; };
   };
 
-  analyze_fn = bc: let runsvf = runsvf_on bc; in rec {
+  analyze_fn = bc: let runsvf = runsvf_on bc; in recurseIntoAttrs rec {
     # inherit bc;
     ander = runsvf "-ander -write-ander=ander.save -dump-pag -dump-consG -dump-callgraph";
     fspta = runsvf "-fspta -dump-pag -dump-consG -dump-callgraph";
@@ -91,10 +92,10 @@ rec {
 
 
 
-    callgraph = {
+    callgraph = recurseIntoAttrs {
       inherit (svgs_fn "callgraph" "${ander}/callgraph_final.dot") dot twopi;
     };
-    fspta_callgraph = {
+    fspta_callgraph = recurseIntoAttrs {
       inherit (svgs_fn "callgraph" "${fspta}/callgraph_final.dot") dot twopi;
     };
   };

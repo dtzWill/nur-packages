@@ -1,4 +1,4 @@
-{ runCommand, svf, llvm, clang, graphviz, makeFontsConf, freefont_ttf }:
+{ runCommand, recurseIntoAttrs, svf, llvm, clang, graphviz, makeFontsConf, freefont_ttf }:
 
 
 let
@@ -15,7 +15,7 @@ let
     inherit runCommand svf graphviz makeFontsConf freefont_ttf;
   };
 
-in with utils; {
+in with utils; recurseIntoAttrs {
   # inherit analyze_fn;
 
   swap = analyze_fn "${swapbc}/swap.opt";
