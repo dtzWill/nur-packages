@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs ? import <nixpkgs> {} }:
 
 
 
@@ -92,4 +92,4 @@ self = rec {
     svf = svf_6;
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
-}; in self
+}; in pkgs.recurseIntoAttrs self
