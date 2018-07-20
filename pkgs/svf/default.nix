@@ -10,4 +10,9 @@ let
       sha256 = "0f47579hlbdb1mivxc2l91xvf0577v8n4x4vmgr76nn2nqq7s75q";
     };
   };
-in import ./generic.nix { inherit stdenv llvm cmake srcinfo; } { }
+in import ./generic.nix { inherit stdenv llvm cmake srcinfo; } {
+  postInstall = ''
+    install -Dm755 {.,$out}/bin/saber
+    install -Dm755 {.,$out}/bin/wpa
+  '';
+}
