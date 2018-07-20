@@ -1,10 +1,12 @@
-{ nixpkgs ? (fetchTarball channel:nixos-unstable) }:
+{ nixpkgs ? (fetchTarball channel:nixos-unstable),
+  src ? (fetchGit ../.)
+}:
 
 # Evaluate 'release.nix' but don't abort on unfree, just log and skip
 
 let
   logHandler = msg: builtins.trace "Ignoring evaluation failure of unfree:\n${msg}" true;
-  pkgs = import ../release.nix {
+  pkgs = import (src + "/release.nix") {
     inherit nixpkgs;
     args.config = {
       allowUnfree = false;
