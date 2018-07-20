@@ -68,4 +68,8 @@ rec {
 
   slipstream-ipcd = callPackage ./pkgs/slipstream/ipcd.nix { };
   slipstream-libipc = callPackage ./pkgs/slipstream/libipc.nix { inherit slipstream-ipcd; };
+
+  svf_4 = callPackage ./pkgs/svf/4.nix { llvm = pkgs.llvm_4; };
+  svf_6 = callPackage ./pkgs/svf { llvm = pkgs.llvm_6; };
+  svf = svf_4;
 }
