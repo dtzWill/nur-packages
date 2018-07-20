@@ -1,7 +1,7 @@
 { stdenv
 , cmake
 , llvm
-, clang # tests
+#, clang # tests
 , fetchFromGitHub
 , checkWithOtherPTAs ? false # They don't pass tests but potentially interesting.
 , doCheck ? true
@@ -74,12 +74,14 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  buildInputs = [ llvm cmake ] ++ stdenv.lib.optional doCheck clang;
+  buildInputs = [ llvm cmake ];
 
   meta = with stdenv.lib; {
     description = "Dependence graph for programs"; #  Generic implementation of dependence graphs with instantiation for LLVM that contains a static slicer for LLVM bitcode";
     maintainers = with maintainers; [ dtzWill ];
     license = licenses.mit;
+
+    broken = !stdenv.cc.isClang;
   };
 }
 

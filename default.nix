@@ -7,13 +7,13 @@ rec {
   ccontrol = callPackage ./pkgs/ccontrol { };
 
   dg_6 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_6) stdenv clang llvm;
+    inherit (pkgs.llvmPackages_6) stdenv llvm;
   };
   dg_5 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_5) stdenv clang llvm;
+    inherit (pkgs.llvmPackages_5) stdenv llvm;
   };
   dg_4 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_4) stdenv clang llvm;
+    inherit (pkgs.llvmPackages_4) stdenv llvm;
   };
   /*
   dg_39 = callPackage ./pkgs/dg {
