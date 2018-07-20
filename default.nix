@@ -1,5 +1,7 @@
-{ callPackage, pkgs }:
+{ pkgs }:
 
+
+with { inherit (pkgs) callPackage; };
 
 rec {
   alive = callPackage ./pkgs/alive { };
