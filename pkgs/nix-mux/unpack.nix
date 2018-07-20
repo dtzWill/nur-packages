@@ -1,7 +1,7 @@
-{ system, bootstrapFiles }:
+{ name, system, bootstrapFiles }:
 
 derivation {
-  name = "nix-mux";
+  inherit name;
 
   builder = bootstrapFiles.busybox;
 

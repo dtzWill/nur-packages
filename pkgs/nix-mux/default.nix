@@ -1,8 +1,9 @@
 { stdenv, runCommandNoCC, lib }:
 
 let
+  version = "2.1dtz-mux-a96a0d2";
   nix-mux-tarball = lib.from-nar {
-    name = "nix-mux";
+    name = "nix-${version}";
     narurl = "nar/f616c55cc6067fcce440abe5255ca7307533726773491426dd8ebcb92cc8ad22.nar.xz";
     narHash = "sha256:1p5vzz6hv0r96qi78jb8f72c3yinj4phd16ksn6dlrs7pcnv7gc5";
   };
@@ -15,6 +16,7 @@ let
   };
 
   unpack = import ./unpack.nix {
+    name = "nix-${version}";
     inherit (stdenv.hostPlatform) system;
     inherit bootstrapFiles;
   };
