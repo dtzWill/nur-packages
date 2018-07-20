@@ -18,6 +18,12 @@ let
     inherit (stdenv.hostPlatform) system;
     inherit bootstrapFiles;
   };
+
+  meta = with lib; {
+    description = "Nix All-in-One! (multiplexed)";
+    maintainers = with maiintainers; [ dtzWill ];
+    license = licenses.lgpl2Plus;
+    homepage = https://github.com/allvm/allvm-tools;
+  };
 in
-  unpack
-  
+  unpack // { inherit meta; }
