@@ -72,4 +72,14 @@ rec {
   svf_4 = callPackage ./pkgs/svf/4.nix { llvm = pkgs.llvm_4; };
   svf_6 = callPackage ./pkgs/svf { llvm = pkgs.llvm_6; };
   svf = svf_4;
+  svf4-tests = import ./pkgs/svf/test.nix {
+    inherit (pkgs.llvmPackages_4) llvm clang;
+    svf = svf_4;
+    inherit (pkgs) runCommand graphviz makeFontsConf freefont_ttf;
+  };
+  ptaben-fi_4 = callPackage ./pkgs/svf/ptaben.nix {
+    inherit (pkgs.llvmPackages_4) llvm clang;
+    svf = svf_4;
+  };
+  ptaben-fs_4 = ptaben-fi_4.override { testFSPTA = true; };
 }
