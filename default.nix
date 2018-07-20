@@ -70,6 +70,8 @@ self = rec {
     inherit (pkgs.llvmPackages_35) llvm;
   };
 
+  nix-mux = callPackage ./pkgs/nix-mux { };
+
   publib = callPackage ./pkgs/publib { };
   slinky = callPackage ./pkgs/slinky { };
   # slinky32 = pkgs.pkgsi686Linux.callPackage ./pkgs/slinky { };
