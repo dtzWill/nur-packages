@@ -27,5 +27,11 @@ args: stdenv.mkDerivation (rec {
   nativeBuildInputs = [ cmake ];
 
   buildInputs = [ llvm ];
+
+  meta = with stdenv.lib; {
+    description = "Pointer Analysis and Program Dependence Analysis for C and C++ Programs";
+    maintainers = with maintainers; [ dtzWill ];
+    license = licenses.gpl3Plus;
+  };
 } // args)
 
