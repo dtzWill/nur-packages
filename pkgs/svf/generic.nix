@@ -24,6 +24,8 @@ args: stdenv.mkDerivation (rec {
   # Without this, tools aren't built (or installed)
   cmakeFlags = [ "-DLLVM_BUILD_TOOLS=ON" "-DCMAKE_POSITION_INDEPENDENT_CODE=ON" ];
 
-  buildInputs = [ llvm cmake ];
+  nativeBuildInputs = [ cmake ];
+
+  buildInputs = [ llvm ];
 } // args)
 
