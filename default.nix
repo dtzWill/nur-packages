@@ -12,7 +12,7 @@ self = rec {
   alive = callPackage ./pkgs/alive { };
 
   # XXX: madness?
-  allvm-tools = import ./pkgs/allvm/tools-from-nar.nix;
+  allvm-tools = callPackage ./pkgs/allvm/tools-from-nar.nix { };
 
   ccontrol = callPackage ./pkgs/ccontrol { };
 
