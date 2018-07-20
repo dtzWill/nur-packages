@@ -43,4 +43,9 @@ stdenv.mkDerivation rec {
     mkdir $out
     mv test.log $out
   '';
+
+  meta = with stdenv.lib; {
+    description = "Micro-benchmark Suite for Pointer Analysis";
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
