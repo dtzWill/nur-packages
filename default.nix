@@ -6,6 +6,9 @@ with { inherit (pkgs) callPackage lib recurseIntoAttrs; };
 rec {
   alive = callPackage ./pkgs/alive { };
 
+  # XXX: madness?
+  allvm-tools = import ./pkgs/allvm/tools-from-nar.nix;
+
   ccontrol = callPackage ./pkgs/ccontrol { };
 
   dg_6 = callPackage ./pkgs/dg {
