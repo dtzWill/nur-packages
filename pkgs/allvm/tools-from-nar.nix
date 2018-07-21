@@ -7,7 +7,7 @@ let info = rec {
 
   meta = with lib; {
     description = "ALLVM Tools (multiplexed)";
-    maintainers = with maiintainers; [ dtzWill ];
+    maintainers = with maintainers; [ dtzWill ];
     license = licenses.ncsa;
     homepage = https://github.com/allvm/allvm-tools;
   };
