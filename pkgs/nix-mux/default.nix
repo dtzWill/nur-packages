@@ -23,7 +23,7 @@ let
 
   meta = with lib; {
     description = "Nix All-in-One! (multiplexed)";
-    maintainers = with maiintainers; [ dtzWill ];
+    maintainers = with maintainers; [ dtzWill ];
     license = licenses.lgpl2Plus;
     homepage = https://github.com/allvm/allvm-tools;
   };
