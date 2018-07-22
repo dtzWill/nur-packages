@@ -1,6 +1,6 @@
 language: nix
 
-install:
+before_install:
   - ./ci/configure-nix.sh
   - ./ci/install-new-nix.sh
   - ./ci/install-cachix.sh
