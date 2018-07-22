@@ -74,7 +74,8 @@ stdenv.mkDerivation rec {
     done
   '';
 
-  buildInputs = [ llvm cmake ];
+  nativeBuildInputs = [ cmake ];
+  buildInputs = [ llvm ];
 
   meta = with stdenv.lib; {
     description = "Dependence graph for programs"; #  Generic implementation of dependence graphs with instantiation for LLVM that contains a static slicer for LLVM bitcode";
