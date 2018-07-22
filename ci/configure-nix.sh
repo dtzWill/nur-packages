@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 # Use the ALLVM binary cache in addition to default NixOS cache
 # Also, ensure sandbox support is enabled
