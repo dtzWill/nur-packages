@@ -1,5 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 
+pkgs.recurseIntoAttrs (
 pkgs.lib.makeScope pkgs.newScope (self: with self; {
   lib = pkgs.lib // import ./lib;
   alive = callPackage ./pkgs/alive { };
@@ -86,4 +87,4 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
 
-})
+}))
