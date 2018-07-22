@@ -1,13 +1,6 @@
 { pkgs ? import <nixpkgs> {} }:
 
-
-
-let
-inherit (pkgs) recurseIntoAttrs;
-  callPackage = pkgs.newScope (self // {
-    # extras
-  });
-self = rec {
+pkgs.lib.makeScope pkgs.newScope (self: with self; {
   lib = pkgs.lib // import ./lib;
   alive = callPackage ./pkgs/alive { };
 
@@ -92,4 +85,5 @@ self = rec {
     svf = svf_6;
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
-}; in pkgs.recurseIntoAttrs self
+
+})
