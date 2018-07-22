@@ -24,9 +24,6 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
   kittel-koat = callPackage ./pkgs/kittel-koat {
     ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
   };
-  #libbeauty = callPackage ./pkgs/libbeauty {
-  #  inherit (pkgs.llvmPackages_4) stdenv llvm;
-  #};
   libebc = callPackage ./pkgs/libebc {
     inherit (pkgs.llvmPackages_4) llvm;
   };
