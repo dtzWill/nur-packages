@@ -1,7 +1,7 @@
 language: nix
 
 install:
-  - install -Dt ~/.config/nix ./ci/nix.conf
+  - mkdir -p ~/.config/nix && cp ./ci/nix.conf ~/.config/nix/
   - ./ci/install-new-nix.sh
   - ./ci/install-cachix.sh
   - cachix push ${CACHIX_CACHE} --watch-store &
