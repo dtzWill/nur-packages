@@ -1,7 +1,7 @@
 language: nix
 
 install:
-  - install -Dm644 -t ~/.config/nix ./ci/nix.conf
+  - install -Dt ~/.config/nix ./ci/nix.conf
   - ./ci/install-new-nix.sh
   - ./ci/install-cachix.sh
   - cachix push ${CACHIX_CACHE} --watch-store &
