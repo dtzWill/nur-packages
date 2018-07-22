@@ -1,8 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
-with { lib' = pkgs.lib // import ./lib; };
-lib'.makeScope pkgs.newScope (self: with self; {
-  lib = lib';
+pkgs.lib.makeScope pkgs.newScope (self: with self; {
+  lib = pkgs.lib // import ./lib;
 
   alive = callPackage ./pkgs/alive { };
 
