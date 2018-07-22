@@ -1,40 +1,14 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.recurseIntoAttrs (
-pkgs.lib.makeScope pkgs.newScope (self: with self; {
-  lib = pkgs.lib // import ./lib;
+with { lib' = pkgs.lib // import ./lib; };
+lib'.makeScope pkgs.newScope (self: with self; {
+  lib = lib';
+
   alive = callPackage ./pkgs/alive { };
 
-  # XXX: madness?
   allvm-tools = callPackage ./pkgs/allvm/tools-from-nar.nix { };
 
   ccontrol = callPackage ./pkgs/ccontrol { };
-
-  dg_6 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_6) stdenv llvm;
-  };
-  dg_5 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_5) stdenv llvm;
-  };
-  dg_4 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_4) stdenv llvm;
-  };
-  /*
-  dg_39 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_39) stdenv clang llvm;
-  };
-  dg_38 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_38) stdenv clang llvm;
-  };
-  dg_37 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_37) stdenv clang llvm;
-  };
-  dg_35 = callPackage ./pkgs/dg {
-    inherit (pkgs.llvmPackages_35) llvm;
-    clang = pkgs.clang_35;
-  };
-  */
-  dg = dg_4;
 
   diva = callPackage ./pkgs/diva { };
 
@@ -86,5 +60,6 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
     svf = svf_6;
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
-
-}))
+}
+// (pkgs.callPackages ./pkgs/dg { })
+)
