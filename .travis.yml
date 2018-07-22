@@ -1,21 +1,34 @@
 language: nix
 
-before_install:
-  - ./.travis/configure-nix.sh
-  - ./.travis/install-new-nix.sh
-  - ./.travis/install-cachix.sh
+install:
+  - install -D644 -t ~/.config/nix ./ci/nix.conf
+  - ./ci/install-new-nix.sh
+  - ./ci/install-cachix.sh
+  - cachix push ${CACHIX_CACHE} --watch-store &
+
+env:
+  global:
+    - CACHIX_CACHE=allvm
+    - NUR_REPO=dtz
+  matrix:
+    - NIX_PATH=nixpkgs=channel:nixos-unstable
+    - NIX_PATH=nixpkgs=channel:nixos-18.03
+    - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz
+
+before_script:
+  - nix --version
+  - nix eval nixpkgs.lib.version
+  - readlink -f $(nix-instantiate --find-file nixpkgs)
+
+script:
+  - nix-build ./ci --arg nixpkgs '<nixpkgs>'
+
+after_script:
+  - ./ci/push.sh ./result*
 
 # Force VM instead of container, so that sandbox works
 sudo: required
 
-env:
-  - NIX_PATH=nixpkgs=channel:nixos-unstable
-  - NIX_PATH=nixpkgs=channel:nixos-18.03
-  - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz
-
-# Full clone
+# Full clone, so 'fetchGit' works
 git:
   depth: false
-
-script:
-  - env NIX_PATH=$NIX_PATH ./.travis/build.sh --arg nixpkgs '<nixpkgs>'
