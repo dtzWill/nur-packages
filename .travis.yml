@@ -15,7 +15,7 @@ env:
     - NIX_PATH=nixpkgs=channel:nixos-18.03
     - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz
 
-before_script: ./ci/versions.sh
+before_script: nix run nixpkgs.nix-info -c nix-info -m
 
 script: nix-build ./ci --arg nixpkgs '<nixpkgs>'
 
