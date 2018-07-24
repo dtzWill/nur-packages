@@ -13,11 +13,12 @@ stdenv.mkDerivation rec {
 
   configurePhase = "make defconfig";
 
-  installFlags = [ "PREFIX=$(out)" ];
 
   doCheck = true;
-
   checkTarget = "tests";
+
+  installFlags = [ "PREFIX=$(out)/bin" ];
+  installTargets = [ "install_flat" ];
 
   meta = with stdenv.lib; {
     description = "Common linux utilities in a multicall binary";
