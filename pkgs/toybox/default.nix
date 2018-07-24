@@ -17,6 +17,8 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  checkTarget = "tests";
+
   meta = with stdenv.lib; {
     description = "Common linux utilities in a multicall binary";
     homepage = https://landley.net/toybox/;
