@@ -2,16 +2,16 @@
 
 stdenv.mkDerivation rec {
   name = "toybox-${version}";
-  version = "0.7.6";
+  version = "0.7.7";
 
   src = fetchurl {
     url = "http://landley.net/toybox/downloads/${name}.tar.gz";
-    sha256 = "15fvp5zv8pfjpcnhac5pywl0kgld885mvcldix6yrk9bphz69jg2";
+    sha256 = "187viyc1g2rin58gird615cw6qh069cpznia2424q1403jr8l8gf";
   };
 
   postPatch = "patchShebangs .";
 
-  preBuild = "make defconfig";
+  configurePhase = "make defconfig";
 
   installFlags = [ "PREFIX=$(out)" ];
 
