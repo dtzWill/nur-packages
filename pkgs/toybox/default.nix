@@ -16,4 +16,10 @@ stdenv.mkDerivation rec {
   installFlags = [ "PREFIX=$(out)" ];
 
   doCheck = true;
+
+  meta = with stdenv.lib; {
+    description = "Common linux utilities in a multicall binary";
+    license = licenses.bsd2;
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
