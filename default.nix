@@ -2,6 +2,7 @@
 
 pkgs.lib.makeScope pkgs.newScope (self: with self; {
   lib = pkgs.lib // import ./lib;
+  pkgs = self; # XXX: Should the packages be top-level as well?
 
   alive = callPackage ./pkgs/alive { };
 
