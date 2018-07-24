@@ -57,6 +57,8 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
     svf = svf_6;
   };
   ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
+
+  toybox = callPackage ./pkgs/toybox { };
 }
 // (pkgs.callPackages ./pkgs/dg { })
 )
