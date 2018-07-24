@@ -19,6 +19,7 @@ stdenv.mkDerivation rec {
 
   meta = with stdenv.lib; {
     description = "Common linux utilities in a multicall binary";
+    homepage = https://landley.net/toybox/;
     license = licenses.bsd2;
     maintainers = with maintainers; [ dtzWill ];
   };
