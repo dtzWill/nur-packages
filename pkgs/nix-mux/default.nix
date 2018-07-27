@@ -1,11 +1,11 @@
 { stdenv, runCommandNoCC, lib }:
 
 let
-  version = "2.1dtz-mux-698574e";
+  version = "2.1dtz-mux-f9c10e7";
   nix-mux-tarball = lib.from-nar {
     name = "nix-${version}";
-    narurl = "nar/c95e61735685a5a94c1b688d3f9d1e78bb52af9988f79dd5e1aaa82c7ff8c438.nar.xz";
-    narHash = "sha256:1yl843z915pnac9dwnd3bxdm4am1i1m9x8svl9vvc310w39r5nxl";
+    narurl = "nar/a43ad0f6efa6402d332fb6d46896f018c77c225959d9b5718411ec1771963203.nar.xz";
+    narHash = "sha256:10ac9wml9hdqm9krjk7yvps8dmwmwygrnm0qvgc2xv5rj0lapwj6";
   };
 
   bootstrapFiles = {
