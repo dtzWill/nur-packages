@@ -8,7 +8,7 @@ narHash
 import <nix/fetchurl.nix> {
   url = "${substituter}/${narurl}";
   unpack = true;
-  name = "allvm-tools-bins";
+  inherit name;
 
   sha256 = narHash; # downloadHash;
 }
