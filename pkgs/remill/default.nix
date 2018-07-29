@@ -92,7 +92,8 @@ let
     postInstall = ''
       chmod +rx $out/bin/*
 
-      mv ../tools/mcsema_disass/{ida,binja} $out/gen/
+      mkdir -p $out/gen
+      mv ../tools/mcsema/tools/mcsema_disass/{ida,binja} $out/gen/
     '';
 
     nativeBuildInputs = [ cmake ];
@@ -126,7 +127,7 @@ let
       cd tools
     '';
 
-    buildInputs = [ python-protobuf python2Packages.python_magic ];
+    propagatedBuildInputs = [ python-protobuf python2Packages.python_magic ];
 
     inherit meta;
   };
