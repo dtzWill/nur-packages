@@ -41,7 +41,7 @@ let
 
     postPatch = ''
       substituteInPlace CMakeLists.txt \
-      --replace "find_package(XED REQUIRED)" ""
+        --replace "find_package(XED REQUIRED)" ""
       for x in tests/{AArch64,X86}/CMakeLists.txt; do
       substituteInPlace $x \
         --replace "find_package(gtest REQUIRED)" ""
