@@ -65,7 +65,13 @@ let
 
       sed -i -e '/CODE/,+2d' tools/mcsema/CMakeLists.txt
       substituteInPlace tools/mcsema/CMakeLists.txt \
-      --replace ' ''${CMAKE_CURRENT_SOURCE_DIR}/tools/mcsema_disass/ida' ' ''${CMAKE_INSTALL_PREFIX}/gen/CFG_pb2.py'
+        --replace ' ''${CMAKE_CURRENT_SOURCE_DIR}/tools/mcsema_disass/ida'\
+                  ' ''${CMAKE_INSTALL_PREFIX}/gen/CFG_pb2.py'
+
+      # Don't look for "ABI" includes under 'x86_64-linux-gnu', they're not there
+      substituteInPlace tools/mcsema/mcsema/OS/Linux/ABI_libc.h \
+        --replace "#include <x86_64-linux-gnu/" \
+                  "#include <"
     '';
 
     preConfigure = ''
