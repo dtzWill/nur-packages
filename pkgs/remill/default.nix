@@ -53,7 +53,8 @@ let
       for x in tests/{AArch64,X86}/CMakeLists.txt; do
         substituteInPlace $x \
           --replace "find_package(gtest REQUIRED)" \
-                    "find_package(GTest REQUIRED)"
+                    "find_package(GTest REQUIRED)" \
+          --replace "gtest_" "GTest_"
       done
 
       # This keeps the chrpath command, don't do that for now
