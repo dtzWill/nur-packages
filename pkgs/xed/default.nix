@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, python, mbuild }:
+{ stdenv, fetchFromGitHub, mbuild }:
 
 stdenv.mkDerivation rec {
   name = "intelxed-${version}";
@@ -10,24 +10,17 @@ stdenv.mkDerivation rec {
     sha256 = "1757anm01nl0b7nqyh2bvgdrz5fhgvdyjpcx2nvg05v8icdj2xmh";
   };
 
-  postUnpack = ''
-    t="$(ls -d xed-*)/mbuild"
-    cp -ar ${mbuild} $t
-    chmod u+w -R $t
-  '';
-
-  nativeBuildInputs = [ python ];
-
-  buildPhase = ''
-    python ./mfile.py -j$NIX_BUILD_CORES
-  '';
+  nativeBuildInputs = [ mbuild ];
 
   installPhase = ''
-    python ./mfile.py -j$NIX_BUILD_CORES --prefix=$out install
+    python ./mfile.py install --shared --install-dir=$out
+    ln -s $out/include/xed/* $out/include
+    rm -r $out/{mbuild,misc,LICENSE,examples,README.md,bin}
   '';
 
   meta = with stdenv.lib; {
     description = "x86 encoder decoder";
+    homepage = https://github.com/intelxed/xed;
     license = licenses.asl20;
   };
 }
