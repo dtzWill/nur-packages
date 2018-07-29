@@ -65,7 +65,7 @@ let
 
     cmakeFlags = [
       "-DXED_INCLUDE_DIRS=${intelxed}/include"
-      "-DXED_LIBRARIES=${intelxed}/lib/libxed.a;${intelxed}/lib/libxed-ild.a"
+      "-DXED_LIBRARIES=${intelxed}/lib/libxed.so;${intelxed}/lib/libxed-ild.so"
     ];
 
     postInstall = ''
