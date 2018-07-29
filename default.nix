@@ -41,6 +41,21 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
   slinky = callPackage ./pkgs/slinky { };
   # slinky32 = pkgs.pkgsi686Linux.callPackage ./pkgs/slinky { };
 
+  glog-cmake = callPackage ./pkgs/glog { useCMake = true; };
+  protobuf3_2 = callPackage ./pkgs/protobuf/3.2.nix { };
+
+  remill =
+    let
+      llvmPkgs = pkgs.llvmPackages_4;
+      llvm = llvmPkgs.llvm;
+      clang = pkgs.wrapClangMulti llvmPkgs.clang;
+      stdenv = pkgs.overrideCC pkgs.stdenv clang;
+    in callPackage ./pkgs/remill {
+      inherit llvm clang stdenv;
+      protobuf = protobuf3_2.override { inherit stdenv; };
+      glog = glog-cmake;
+  };
+
   slipstream-ipcd = callPackage ./pkgs/slipstream/ipcd.nix { };
   slipstream-libipc = callPackage ./pkgs/slipstream/libipc.nix { };
 
