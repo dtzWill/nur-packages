@@ -23,7 +23,6 @@ stdenv.mkDerivation rec {
     python ./mfile.py $buildFlags --prefix $out
   '';
 
-    #rm -r $out/{mbuild,misc,LICENSE,examples,README.md,bin}
   meta = with stdenv.lib; {
     description = "x86 encoder decoder";
     homepage = https://github.com/intelxed/xed;
