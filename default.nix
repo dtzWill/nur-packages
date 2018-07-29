@@ -54,6 +54,8 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
       inherit llvm clang stdenv;
       protobuf = protobuf3_2.override { inherit stdenv; };
       glog = glog-cmake;
+      gtest = pkgs.gtest.override { inherit stdenv; };
+      intelxed = intelxed.override { inherit stdenv; };
   };
 
   slipstream-ipcd = callPackage ./pkgs/slipstream/ipcd.nix { };

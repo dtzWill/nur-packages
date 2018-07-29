@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, mbuild }:
+{ stdenv, fetchFromGitHub, mbuild, enableShared ? true }:
 
 stdenv.mkDerivation rec {
   name = "intelxed-${version}";
@@ -12,10 +12,15 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ mbuild ];
 
+  buildFlags = [
+    "install"
+    "-v1"
+  ]
+    ++ stdenv.lib.optional stdenv.cc.isClang "--compiler=clang"
+    ++ stdenv.lib.optional enableShared "--shared";
+
   installPhase = ''
-    python ./mfile.py install --shared --install-dir=$out
-    ln -s $out/include/xed/* $out/include
-    rm -r $out/{mbuild,misc,LICENSE,examples,README.md,bin}
+    python ./mfile.py $buildFlags --prefix $out
   '';
 
   meta = with stdenv.lib; {

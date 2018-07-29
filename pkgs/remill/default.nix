@@ -7,6 +7,7 @@ intelxed,
 glog,
 google-gflags,
 gtest,
+doInstallCheck ? false,
 }:
 
 with stdenv.lib;
@@ -22,6 +23,13 @@ let
     };
   };
   mcsema_srcinfo = import ./mcsema.nix { inherit fetchFromGitHub; };
+
+  meta = {
+    description = "Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode, plus mcsema";
+    license = licenses.asl20;
+    homepage = https://github.com/trailofbits/remill;
+    maintainers = with maintainers; [ dtzWill ];
+  };
 
   python-protobuf = python2Packages.protobuf.override { inherit protobuf; };
   python = python2Packages.python;
@@ -41,10 +49,11 @@ let
 
     postPatch = ''
       substituteInPlace CMakeLists.txt \
-      --replace "find_package(XED REQUIRED)" ""
+        --replace "find_package(XED REQUIRED)" ""
       for x in tests/{AArch64,X86}/CMakeLists.txt; do
-      substituteInPlace $x \
-        --replace "find_package(gtest REQUIRED)" ""
+        substituteInPlace $x \
+          --replace "find_package(gtest REQUIRED)" \
+                    "find_package(GTest REQUIRED)"
       done
 
       # This keeps the chrpath command, don't do that for now
@@ -65,7 +74,7 @@ let
 
     cmakeFlags = [
       "-DXED_INCLUDE_DIRS=${intelxed}/include"
-      "-DXED_LIBRARIES=${intelxed}/lib/libxed.a;${intelxed}/lib/libxed-ild.a"
+      "-DXED_LIBRARIES=${intelxed}/lib/libxed.so;${intelxed}/lib/libxed-ild.so"
     ];
 
     postInstall = ''
@@ -80,13 +89,16 @@ let
       glog google-gflags gtest
     ];
 
-    doInstallCheck = false;
+    inherit doInstallCheck;
+
     installCheckPhase = ''
       make build_x86_tests
       make test
     '';
 
     passthru = { inherit mcsema_srcinfo; };
+
+    inherit meta;
   };
 
   remill-mcsema-py = with mcsema_srcinfo; python2Packages.buildPythonApplication rec {
@@ -101,6 +113,8 @@ let
     '';
 
     buildInputs = [ python-protobuf python2Packages.python_magic ];
+
+    inherit meta;
   };
 in
   # Merge things together into unified 'mcsema':
