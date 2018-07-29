@@ -36,7 +36,7 @@ let
     postUnpack = ''
       unpackFile ${mcsema_srcinfo.src}
       chmod u+rw -R mcsema-* remill-*
-      mv mcsema-* $(ls -d remill-*)/tools/mcsema
+      mv mcsema-* $sourceRoot/tools/mcsema
     '';
 
     postPatch = ''
