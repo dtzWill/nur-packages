@@ -69,9 +69,13 @@ let
                   ' ''${CMAKE_INSTALL_PREFIX}/gen/CFG_pb2.py'
 
       # Don't look for "ABI" includes under 'x86_64-linux-gnu', they're not there
+      # No "ultrasound" header, not sure what that's about.
+      # xlocale is non-standard and not in glibc 2.27+, it should be 'locale.h'
       substituteInPlace tools/mcsema/mcsema/OS/Linux/ABI_libc.h \
         --replace "#include <x86_64-linux-gnu/" \
-                  "#include <"
+                  "#include <" \
+        --replace "#include <sys/ultrasound.h>"  "" \
+        --replace '<xlocale.h>' '<locale.h>'
     '';
 
     preConfigure = ''
