@@ -7,6 +7,7 @@ intelxed,
 glog,
 google-gflags,
 gtest,
+doInstallCheck ? false,
 }:
 
 with stdenv.lib;
@@ -88,7 +89,8 @@ let
       glog google-gflags gtest
     ];
 
-    doInstallCheck = false;
+    inherit doInstallCheck;
+
     installCheckPhase = ''
       make build_x86_tests
       make test
