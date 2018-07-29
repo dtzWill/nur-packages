@@ -76,6 +76,11 @@ let
                   "#include <" \
         --replace "#include <sys/ultrasound.h>"  "" \
         --replace '<xlocale.h>' '<locale.h>'
+
+      # Don't try to build ABI library using the wrong list of headers/functions, just use what's there I suppose.
+      substituteInPlace tools/mcsema/CMakeLists.txt \
+        --replace 'add_subdirectory(mcsema/OS/Linux)' ""
+
     '';
 
     preConfigure = ''
