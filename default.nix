@@ -51,7 +51,7 @@ pkgs.lib.makeScope pkgs.newScope (self: with self; {
       clang = pkgs.wrapClangMulti llvmPkgs.clang;
       stdenv = pkgs.overrideCC pkgs.stdenv clang;
     in callPackage ./pkgs/remill {
-      inherit llvm clang stdenv;
+      inherit llvm stdenv;
       protobuf = protobuf3_2.override { inherit stdenv; };
       glog = glog-cmake;
       gtest = pkgs.gtest.override { inherit stdenv; };

@@ -1,6 +1,6 @@
 { stdenv, fetchFromGitHub, buildEnv,
 cmake,
-llvm, clang,
+llvm,
 python2Packages,
 protobuf,
 intelxed,
@@ -64,9 +64,6 @@ let
       sed -i CMakeLists.txt -e 's|\(.*\)COMMAND ''${CHRPATH_COMMAND}|\1COMMAND chmod u+w ''${output_file_path}\n# \0|'
 
       sed -i -e '/CODE/,+2d' tools/mcsema/CMakeLists.txt
-      substituteInPlace tools/mcsema/CMakeLists.txt \
-        --replace ' ''${CMAKE_CURRENT_SOURCE_DIR}/tools/mcsema_disass/ida'\
-                  ' ''${CMAKE_INSTALL_PREFIX}/gen/CFG_pb2.py'
 
       # Don't look for "ABI" includes under 'x86_64-linux-gnu', they're not there
       # No "ultrasound" header, not sure what that's about.
@@ -94,11 +91,13 @@ let
 
     postInstall = ''
       chmod +rx $out/bin/*
+
+      mv ../tools/mcsema_disass/{ida,binja} $out/gen/
     '';
 
     nativeBuildInputs = [ cmake ];
     buildInputs = [
-      llvm clang
+      llvm
       python python-protobuf protobuf
       intelxed
       glog google-gflags gtest
@@ -121,7 +120,7 @@ let
     inherit src version;
 
     preConfigure = ''
-      cp ${remill-bins}/gen/* tools/mcsema_disass/ida/
+      cp -r ${remill-bins}/gen/* tools/mcsema_disass/
 
       sed -i 's,import itertools,import itertools\nimport site\nsite.addsitedir("${python-protobuf}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.python_magic}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.six}/lib/${python.libPrefix}/site-packages"),' tools/mcsema_disass/ida/get_cfg.py
       cd tools
