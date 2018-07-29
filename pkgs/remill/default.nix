@@ -80,7 +80,7 @@ let
       glog google-gflags gtest
     ];
 
-    doInstallCheck = false;
+    doInstallCheck = true;
     installCheckPhase = ''
       make build_x86_tests
       make test
