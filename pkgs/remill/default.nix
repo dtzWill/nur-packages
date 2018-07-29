@@ -54,7 +54,7 @@ let
         substituteInPlace $x \
           --replace "find_package(gtest REQUIRED)" \
                     "find_package(GTest REQUIRED)" \
-          --replace "gtest_" "GTest_"
+          --replace "gtest_LIBRARIES" "GTEST_LIBRARY"
       done
 
       # This keeps the chrpath command, don't do that for now
