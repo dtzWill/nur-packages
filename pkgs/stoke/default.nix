@@ -1,0 +1,138 @@
+{ stdenv, fetchFromGitHub
+, bison
+, binutils
+, boost
+, cln
+, cmake
+, doxygen
+, flex
+, ghcWithPackages
+, git
+, jsoncpp
+, python
+# Not mentioned deps
+, gmp
+, iml
+# Kludge for source
+, astyle
+# Fixed platform to build for
+, stokePlatform ? "sandybridge"
+, debugVersion ? false
+, makeWrapper
+, patchelfUnstable
+}:
+
+let
+  ghc = ghcWithPackages (pkgs: with pkgs; [
+    regex-compat regex-tdfa split
+  ]);
+  buildCfg = if debugVersion then "debug" else "release";
+
+in stdenv.mkDerivation rec {
+  version = "2016-03-11";
+  name = "stoke-${stokePlatform}-${version}";
+
+  src = fetchFromGitHub {
+    owner = "StanfordPL";
+    repo = "stoke";
+    rev = "6f771917bfcf12667ac62ade3befd77cd6b40e93";
+    sha256 = "1vdkci88bdldw3max0mj1v1xgadqiqm84w80xs37mcsjcqjpmbbx";
+    fetchSubmodules = true;
+  };
+
+  buildInputs = [
+    bison
+    cln
+    cmake
+    doxygen
+    flex
+    ghc
+    git
+    gmp
+    iml
+    boost
+    jsoncpp
+    python
+    makeWrapper
+    patchelfUnstable
+  ];
+
+  postUnpack = ''
+    unpackFile ${astyle.src}
+    mv astyle $(echo -n stoke-*)/src/ext/astyle
+  '';
+
+  patchPhase = ''
+    patchShebangs configure.sh
+    patchShebangs src/validator/generate_handlers_h.sh
+    :> scripts/make/submodule-init.sh
+
+    substituteInPlace Makefile --replace ccache ""
+    substituteInPlace src/ext/x64asm/Makefile --replace ccache ""
+
+    # Build x86asm using the specified "EXT_OPT" option, otherwise goes unused
+    substituteInPlace src/ext/x64asm/Makefile --replace 'all: release' 'all: $(EXT_OPT)'
+
+    substituteInPlace src/validator/null.cc \
+      --replace '#include "gmp.h"' '#include <gmp.h>' \
+      --replace '#include "iml.h"' '#include <iml.h>'
+
+    sed -i 's,make$,$(MAKE) -j$(NTHREADS),' Makefile
+
+    substituteInPlace src/disassembler/disassembler.cc \
+      --replace "/usr/bin/objdump" "${binutils}/bin/objdump"
+
+    sed -i "s,pin_path = .*,pin_path = \"$out/libexec/stoke/pin/\";," tools/apps/stoke_testcase.cc
+    substituteInPlace tools/apps/stoke_testcase.cc \
+      --replace "pin_path <<" "here <<"
+  '';
+
+  configurePhase = ''
+    cat > .stoke_config <<EOF
+    STOKE_PLATFORM="${stokePlatform}"
+    BUILD_TYPE=${buildCfg}
+    MISC_OPTIONS=
+    EOF
+  '';
+
+  buildPhase = ''
+    make -C src/ext/astyle/build/gcc -j$NIX_BUILD_CORES -l$NIX_BUILD_CORES
+    make ${buildCfg} NTHREADS=$NIX_BUILD_CORES -l$NIX_BUILD_CORES -j1
+  '';
+
+  # No one writes install targets :(
+  installPhase = ''
+    mkdir -p $out/{bin,lib}
+
+    # XXX: Copy bin/strata_programs ??
+    cp -r bin/* $out/bin/
+
+    cp src/ext/cvc4-1.4-build/lib/libcvc4.so* $out/lib/
+    cp src/ext/z3/build/libz3.so $out/lib/
+
+    mkdir -p $out/libexec/stoke/
+    cp -r src/ext/pin-2.13-62732-gcc.4.4.7-linux/ $out/libexec/stoke/pin
+
+    export PIN_ROOT="$out/libexec/stoke/pin"
+
+    makeWrapper $PIN_ROOT/pin $out/bin/pin \
+      --set PIN_ROOT $PIN_ROOT \
+      --prefix PATH ':' $PIN_ROOT \
+      --prefix LD_LIBRARY_PATH ':' $PIN_ROOT/intel64/runtime
+
+    for x in $PIN_ROOT/intel64/bin/*; do
+     patchelf --debug --set-interpreter ${stdenv.cc.libc.out}/lib/ld-*so.? $x
+    done
+    patchelf --debug --set-interpreter ${stdenv.cc.libc.out}/lib/32/ld-*so.? $PIN_ROOT/pin
+  '';
+    ## for x in $PIN_ROOT/ia32/bin/*; do
+    ##   patchelf --debug --set-interpreter ${stdenv.cc.libc.out}/lib/32/ld-*so.? $x
+    ## done
+
+  dontPatchELF = true;
+  dontStrip = true;
+
+  # separateDebugInfo = true;
+
+  passthru.stokePlatform = stokePlatform;
+}
