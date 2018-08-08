@@ -80,8 +80,10 @@ in stdenv.mkDerivation rec {
 
     sed -i 's,make$,$(MAKE) -j$(NTHREADS),' Makefile
 
+    echo OBJDUMP=$OBJDUMP
+    echo "$(command -v $OBJDUMP)"
     substituteInPlace src/disassembler/disassembler.cc \
-      --replace "/usr/bin/objdump" "${binutils}/bin/objdump"
+      --replace "/usr/bin/objdump" "$(command -v $OBJDUMP)"
 
     sed -i "s,pin_path = .*,pin_path = \"$out/libexec/stoke/pin/\";," tools/apps/stoke_testcase.cc
     substituteInPlace tools/apps/stoke_testcase.cc \
