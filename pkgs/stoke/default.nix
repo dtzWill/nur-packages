@@ -110,8 +110,8 @@ in stdenv.mkDerivation rec {
     # XXX: Copy bin/strata_programs ??
     cp -r bin/* $out/bin/
 
-    cp src/ext/cvc4-1.4-build/lib/libcvc4.so* $out/lib/
-    cp src/ext/z3/build/libz3.so $out/lib/
+    cp -prd src/ext/cvc4-1.4-build/lib/libcvc4.so* $out/lib/
+    cp -prd src/ext/z3/build/libz3.so $out/lib/
 
     mkdir -p $out/libexec/stoke/
     cp -r src/ext/pin-2.13-62732-gcc.4.4.7-linux/ $out/libexec/stoke/pin
