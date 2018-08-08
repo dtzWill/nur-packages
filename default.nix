@@ -41,6 +41,8 @@ let toplevel = {
       inherit (pkgs.llvmPackages_4) llvm clang;
     };
 
+    iml = callPackage ./pkgs/iml { };
+
     stoke = let
       # stoke docs say you must use gcc 4.9, so do so:
      gcc49Stdenv = pkgs.overrideCC pkgs.stdenv (pkgs.wrapCCMulti pkgs.gcc49);
