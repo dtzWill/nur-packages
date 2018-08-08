@@ -37,4 +37,11 @@ sbtix.buildSbtProgram rec {
 
     sed -i $out/bin/strata -e '2iunset LD_LIBRARY_PATH'
   '';
+
+  meta = with stdenv.lib; {
+    description = "Automatic inference of a formal specification of the x86_64 instruction set";
+    broken = true;
+    license = licenses.unfree; # XXX ?
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
