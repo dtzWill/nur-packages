@@ -19,7 +19,7 @@
 , stokePlatform ? "sandybridge"
 , debugVersion ? false
 , makeWrapper
-, patchelfUnstable
+, patchelf
 }:
 
 let
@@ -54,7 +54,7 @@ in stdenv.mkDerivation rec {
     jsoncpp
     python
     makeWrapper
-    patchelfUnstable
+    patchelf
   ];
 
   postUnpack = ''

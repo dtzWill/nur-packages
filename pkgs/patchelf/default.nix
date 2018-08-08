@@ -1,8 +1,11 @@
-{ patchelf, fetchFromGitHub }:
+{ patchelf, fetchFromGitHub, autoreconfHook }:
 
 patchelf.overrideAttrs (o : rec {
   name = "patchelf-${version}";
   version = "2018-05-09";
+
+  nativeBuildInputs = (o.nativeBuildInputs or []) ++ [ autoreconfHook ];
+
   src = fetchFromGitHub {
     owner  = "NixOS";
     repo = "patchelf";
