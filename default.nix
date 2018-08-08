@@ -41,17 +41,20 @@ let toplevel = {
       inherit (pkgs.llvmPackages_4) llvm clang;
     };
 
-    stoke =callPackage ./pkgs/stoke rec {
+    stoke = let
       # stoke docs say you must use gcc 4.9, so do so:
-      stdenv = pkgs.overrideCC pkgs.stdenv (pkgs.wrapCCMulti pkgs.gcc49);
+     gcc49Stdenv = pkgs.overrideCC pkgs.stdenv (pkgs.wrapCCMulti pkgs.gcc49);
+    in callPackage ./pkgs/stoke {
+      stdenv = gcc49Stdenv;
 
-      boost = pkgs.boost.override {
-        inherit stdenv;
-      };
+      boost = (pkgs.boost.override {
+        stdenv = gcc49Stdenv;
+      }).overrideAttrs (o: {
+        nativeBuildInputs = [ pkgs.which gcc49Stdenv.cc ];
+      });
       cln = pkgs.cln.override {
-        inherit stdenv;
+        stdenv = gcc49Stdenv;
       };
-
       inherit (pkgs.haskellPackages) ghcWithPackages;
     };
 
