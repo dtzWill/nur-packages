@@ -59,7 +59,7 @@ in stdenv.mkDerivation rec {
 
   postUnpack = ''
     unpackFile ${astyle.src}
-    mv astyle $(echo -n stoke-*)/src/ext/astyle
+    mv astyle source/src/ext/astyle
   '';
 
   patchPhase = ''
