@@ -40,21 +40,22 @@ in stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
-  buildInputs = [
-    bison
-    cln
+  nativeBuildInputs = [
+    bison flex
+    makeWrapper
     cmake
     doxygen
-    flex
-    ghc
     git
+    patchelf
+  ];
+  buildInputs = [
+    cln
+    ghc
     gmp
     iml
     boost
     jsoncpp
     python
-    makeWrapper
-    patchelf
   ];
 
   postUnpack = ''
