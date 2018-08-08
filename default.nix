@@ -36,6 +36,11 @@ let toplevel = {
     llvm2kittel = callPackage ./pkgs/llvm2kittel {
       inherit (pkgs.llvmPackages_4) llvm;
     };
+
+    llstrata = callPackage ./pkgs/llstrata {
+      inherit (pkgs.llvmPackages_4) llvm clang;
+    };
+
     llvmslicer = callPackage ./pkgs/llvmslicer {
       inherit (pkgs.llvmPackages_35) llvm;
     };
