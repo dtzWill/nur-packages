@@ -37,4 +37,8 @@ rustPlatform.buildRustPackage rec {
   '';
 
   doCheck = true;
+
+  meta = with stdenv.lib; {
+    description = "Using Strata to generate semantics for mcsema";
+  };
 }
