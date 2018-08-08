@@ -60,7 +60,7 @@ let toplevel = {
 
     sbtixPkgs = callPackage ./pkgs/strata/sbtix.nix { };
     inherit (sbtixPkgs) sbtix sbtix-tool;
-    strata = callPackage ./pkgs/strata { inherit sbtix stoke; };
+    strata = callPackage ./pkgs/strata { inherit (sbtixPkgs) sbtix; inherit stoke; };
     strata-sandybridge = strata.override { stoke = stoke-sandybridge; };
     strata-haswell = strata.override { stoke = stoke-haswell; };
 
