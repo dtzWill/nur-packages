@@ -138,4 +138,11 @@ in stdenv.mkDerivation rec {
   # separateDebugInfo = true;
 
   passthru.stokePlatform = stokePlatform;
+
+  meta = with stdenv.lib; {
+    description = "Stochastic superoptimizer and program synthesizer";
+    homepage = http://stoke.stanford.edu/;
+    license = licenses.unfree; # XXX ?
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
