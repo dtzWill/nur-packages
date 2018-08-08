@@ -65,13 +65,11 @@ let toplevel = {
     stoke-sandybridge = stoke.override { stokePlatform = "sandybridge"; };
     stoke-haswell = stoke.override { stokePlatform = "haswell"; };
 
-    /*
     sbtixPkgs = callPackage ./pkgs/strata/sbtix.nix { };
     inherit (sbtixPkgs) sbtix sbtix-tool;
     strata = callPackage ./pkgs/strata { inherit (sbtixPkgs) sbtix; inherit stoke; };
     strata-sandybridge = strata.override { stoke = stoke-sandybridge; };
     strata-haswell = strata.override { stoke = stoke-haswell; };
-    */
 
     llvmslicer = callPackage ./pkgs/llvmslicer {
       inherit (pkgs.llvmPackages_35) llvm;

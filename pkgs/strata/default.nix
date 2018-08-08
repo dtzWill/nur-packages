@@ -1,4 +1,4 @@
-{ fetchFromGitHub, sbtix, stoke, python }:
+{ lib, fetchFromGitHub, sbtix, stoke, python }:
 
 let
   githash = "e5b5ebe681920036987aec04f1b625532fa6b962";
@@ -38,9 +38,8 @@ sbtix.buildSbtProgram rec {
     sed -i $out/bin/strata -e '2iunset LD_LIBRARY_PATH'
   '';
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Automatic inference of a formal specification of the x86_64 instruction set";
-    broken = true;
     license = licenses.unfree; # XXX ?
     maintainers = with maintainers; [ dtzWill ];
   };
