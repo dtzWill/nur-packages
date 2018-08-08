@@ -42,6 +42,7 @@ let toplevel = {
     };
 
     iml = callPackage ./pkgs/iml { };
+    patchelf-git = callPackage ./pkgs/patchelf { };
 
     stoke = let
       # stoke docs say you must use gcc 4.9, so do so:
@@ -58,6 +59,7 @@ let toplevel = {
         stdenv = gcc49Stdenv;
       };
       inherit (pkgs.haskellPackages) ghcWithPackages;
+      patchelf = patchelf-git; # fix big files
     };
 
     stoke-sandybridge = stoke.override { stokePlatform = "sandybridge"; };
