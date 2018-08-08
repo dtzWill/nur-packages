@@ -41,6 +41,23 @@ let toplevel = {
       inherit (pkgs.llvmPackages_4) llvm clang;
     };
 
+    stoke =callPackage ./pkgs/stoke rec {
+      # stoke docs say you must use gcc 4.9, so do so:
+      stdenv = pkgs.overrideCC pkgs.stdenv (pkgs.wrapCCMulti pkgs.gcc49);
+
+      boost = pkgs.boost.override {
+        inherit stdenv;
+      };
+      cln = pkgs.cln.override {
+        inherit stdenv;
+      };
+
+      inherit (pkgs.haskellPackages) ghcWithPackages;
+    };
+
+    stoke-sandybridge = stoke.override { stokePlatform = "sandybridge"; };
+    stoke-haswell = stoke.override { stokePlatform = "haswell"; };
+
     llvmslicer = callPackage ./pkgs/llvmslicer {
       inherit (pkgs.llvmPackages_35) llvm;
     };
