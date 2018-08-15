@@ -1,12 +1,12 @@
 { fetchFromGitHub }:
 
 {
-  version = "2018-08-14";
+  version = "2018-08-15";
   src = fetchFromGitHub {
     owner = "trailofbits";
     repo = "mcsema";
-    rev = "f42ec1ff939a48c16d1bb4014f8212868e94e35e";
-    sha256 = "0qqp9b4waasw1s8q6dcpd00jcbw9kdml0m2nkg0g50cbwiqah6az";
+    rev = "22934d3d85a07bfbc557944c5cc74302079373dd";
+    sha256 = "036nsh92fms4hfi3bwrkf9ifkry3li67wvpc94d73h492b97000i";
     name = "mcsema-source";
   };
 }
