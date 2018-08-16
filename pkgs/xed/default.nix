@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   name = "intelxed-${version}";
-  version = "2018-07-02";
+  version = "2018-08-14";
   src = fetchFromGitHub {
     owner = "intelxed";
     repo = "xed";
-    rev = "00c6aac256c994688e54ea5c758e97ba34cd8ebe";
-    sha256 = "1757anm01nl0b7nqyh2bvgdrz5fhgvdyjpcx2nvg05v8icdj2xmh";
+    rev = "a6bb1116cf8a6ae35b5dd7e2cf7dd9127e21d952";
+    sha256 = "067cpyh5rcgk7jnvmkz6230apmba9243nh5gy0pwpd15dzfmckjv";
   };
 
   nativeBuildInputs = [ mbuild ];
