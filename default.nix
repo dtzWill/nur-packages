@@ -27,8 +27,6 @@ let toplevel = {
     intelxed = callPackage ./pkgs/xed { };
     mbuild = callPackage ./pkgs/xed/mbuild.nix { };
 
-    iosevka-term = callPackage ./pkgs/iosevka-term { };
-
     kittel-koat = callPackage ./pkgs/kittel-koat {
       ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
     };
@@ -89,5 +87,6 @@ let toplevel = {
     toybox = callPackage ./pkgs/toybox { };
   }
   // (pkgs.callPackages ./pkgs/dg { })
+  // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
   );
 }; in toplevel #  // toplevel.pkgs

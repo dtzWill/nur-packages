@@ -22,12 +22,14 @@ let
       longDescription= ''
         Slender monospace sans-serif and slab-serif typeface inspired by Pragmata
         Pro, M+ and PF DIN Mono, designed to be the ideal font for programming.
+        This contains 'Term SS${ss}' variant.
       '';
       license = licenses.ofl;
       platforms = platforms.all;
     };
   };
 in {
+  # See https://raw.githubusercontent.com/be5invis/Iosevka/master/images/stylesets.png
   ss01 = mkSS "01" "00qg16m3h97lvdy9gay04pfkyn8vdgg0sh681v20sd6jd045nc4y";
   ss02 = mkSS "02" "0rcfsbcvmb4wi90b4w74w534cchlsbrxvwbsrxhzz5l0bbcghbsg";
   ss03 = mkSS "03" "0m3xr7h877nh1n76rmngavdd5vars2qxnax6w88pl0gqjxzqcvn7";
