@@ -27,7 +27,7 @@ let toplevel = {
     intelxed = callPackage ./pkgs/xed { };
     mbuild = callPackage ./pkgs/xed/mbuild.nix { };
 
-    iosevka = callPackage ./pkgs/iosevka { };
+    iosevka-term = callPackage ./pkgs/iosevka-term { };
 
     kittel-koat = callPackage ./pkgs/kittel-koat {
       ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
