@@ -79,6 +79,7 @@ let
       substituteInPlace tools/mcsema/CMakeLists.txt \
         --replace 'add_subdirectory(mcsema/OS/Linux)' ""
 
+      substituteInPlace cmake/settings.cmake --replace "/usr/local" "$out"
     '';
 
     preConfigure = ''
