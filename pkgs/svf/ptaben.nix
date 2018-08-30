@@ -14,6 +14,7 @@ stdenv.mkDerivation rec {
 
   configurePhase = ''
     export CLANG=${clang}/bin/clang
+    export CLANGCPP=${clang}/bin/clang++
     export LLVMOPT=${llvm}/bin/opt
     export LLVMDIS=${llvm}/bin/llvm-dis
     export LLVMLLC=${llvm}/bin/llc
