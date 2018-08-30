@@ -48,8 +48,10 @@ let
     '';
 
     postPatch = ''
-      substituteInPlace CMakeLists.txt \
-        --replace "find_package(XED REQUIRED)" ""
+      for x in CMakeLists.txt tools/mcsema/CMakeLists.txt; do
+        substituteInPlace $x \
+          --replace "find_package(XED REQUIRED)" ""
+      done
       for x in tests/{AArch64,X86}/CMakeLists.txt; do
         substituteInPlace $x \
           --replace "find_package(gtest REQUIRED)" \
@@ -64,7 +66,7 @@ let
       # since their invocation doesn't accomodate existing rpath value
       sed -i CMakeLists.txt -e 's|\(.*\)COMMAND ''${CHRPATH_COMMAND}|\1COMMAND chmod u+w ''${output_file_path}\n# \0|'
 
-      sed -i -e '/CODE/,+2d' tools/mcsema/CMakeLists.txt
+      sed -i -e '/CODE/,+5d' tools/mcsema/CMakeLists.txt
 
       # Don't look for "ABI" includes under 'x86_64-linux-gnu', they're not there
       # No "ultrasound" header, not sure what that's about.
