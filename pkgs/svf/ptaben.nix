@@ -31,7 +31,6 @@ stdenv.mkDerivation rec {
   # https://github.com/unsw-corg/PTABen/issues/2
   patchPhase = stdenv.lib.optionalString testFSPTA ''
     substituteInPlace runtest.sh --replace 'fi_tests' 'fs_tests'
-    substituteInPlace scripts/testwpa.sh --replace '-ander' '-fspta'
   '' + stdenv.lib.optionalString useValgrind ''
     substituteInPlace scripts/run.sh --replace '$EXEFILE' '${valgrind}/bin/valgrind $EXEFILE'
   '';
