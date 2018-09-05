@@ -127,7 +127,7 @@ let
     preConfigure = ''
       cp -r ${remill-bins}/gen/* tools/mcsema_disass/
 
-      sed -i 's,import itertools,import itertools\nimport site\nsite.addsitedir("${python-protobuf}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.python_magic}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.six}/lib/${python.libPrefix}/site-packages"),' tools/mcsema_disass/ida/get_cfg.py
+      sed -i 's,import itertools,import itertools\nimport site\nsite.addsitedir("${python-protobuf}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.python_magic}/lib/${python.libPrefix}/site-packages")\nsite.addsitedir("${python2Packages.six}/lib/${python.libPrefix}/site-packages"),' tools/mcsema_disass/ida{,7}/get_cfg.py
       cd tools
     '';
 
