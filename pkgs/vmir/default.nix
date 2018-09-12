@@ -11,9 +11,17 @@ stdenv.mkDerivation rec {
     sha256 = "0hj2r6ryzxyrdxx15wmnzqxxvm113q7gf5ryi7pqyh17ilflvsxk";
   };
 
+  hardeningDisable = [ "all" /* :( */ ];
+
+  makeFlags = [ "vmir" "vmir.dbg" "vmir.asan" ];
+
   installPhase = ''
-    install -Dm755 {,$out/bin/}vmir
+    mkdir -p $out/bin
+    mv vmir{,.dbg,.asan} $out/bin/
   '';
+
+  # For now just keep debug info and symbols "as-is"
+  dontStrip = true;
 
   meta = with stdenv.lib; {
     description = "Virtual Machine for Intermediate Representation";
