@@ -117,6 +117,8 @@ let toplevel = {
     ptaben-fs_6 = ptaben-fi_6.override { testFSPTA = true; };
 
     toybox = callPackage ./pkgs/toybox { };
+
+    vmir = callPackage ./pkgs/vmir { };
   }
   // (pkgs.callPackages ./pkgs/dg { })
   // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
