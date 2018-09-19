@@ -14,11 +14,6 @@ in {
   };
 
   config = {
-    # For the channel, not the cache
-    nix.extraOptions = ''
-      netrc-file = ${./allvm-netrc}
-    '';
-
     nix.binaryCaches = [
       "https://cache.nixos.org/"
       (if cfg.useDirectS3URL then
