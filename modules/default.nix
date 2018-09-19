@@ -7,5 +7,8 @@
   # Convenience module
   dwarffs = ./dwarffs.nix;
 
+  nix-dtz = ./nix-dtz.nix;
+  nix-dtz-musl = ./nix-dtz-musl.nix;
+
   vim-manpager = ./vim-manpager.nix;
 }
