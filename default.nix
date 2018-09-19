@@ -77,6 +77,7 @@ let toplevel = {
       inherit (pkgs.llvmPackages_35) llvm;
     };
 
+    pahole = callPackage ./pkgs/pahole { };
 
     publib = callPackage ./pkgs/publib { };
     slinky = callPackage ./pkgs/slinky { inherit publib; };
