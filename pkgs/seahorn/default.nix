@@ -27,7 +27,7 @@ in stdenv.mkDerivation rec {
 
   postUnpack = ''
     ln -s ${llvm_seahorn.src} $sourceRoot/llvm-seahorn
-    ln -s ${dsa_seahorn.src} $sourceRoot/dsa-seahorn
+    ln -s ${dsa_seahorn.src} $sourceRoot/llvm-dsa
   '';
 
   patchPhase = ''

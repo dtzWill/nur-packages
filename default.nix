@@ -139,7 +139,7 @@ let toplevel = {
         inherit (llvmPackages_36) clang;
         inherit z3-spacer;
       };
-      seahorn-demo = callPackage ./pkgs/seahorn/demo { inherit seahorn; };
+      seahorn-demo = pkgs1609.callPackage ./pkgs/seahorn/demo { inherit seahorn; };
     });
   }
   // (pkgs.callPackages ./pkgs/dg { })
