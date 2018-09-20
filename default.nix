@@ -128,17 +128,19 @@ let toplevel = {
 
     # XXX: scoping
     # These expressions are a bit dated
-    z3-spacer = callPackage ./pkgs/seahorn/z3-spacer.nix { };
-    seahorn = let 
-      pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
-      inherit (pkgs1609) llvmPackages_36;
-      in
-      callPackage ./pkgs/seahorn {
-      llvm = llvmPackages_36.llvm.override { enableSharedLibraries = false; };
-      inherit (llvmPackages_36) clang;
-      inherit z3-spacer;
-    };
-    seahorn-demo = callPackage ./pkgs/seahorn/demo { inherit seahorn; };
+    seahornPkgs = lib.recurseIntoAttrs (
+      let 
+        pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
+        inherit (pkgs1609) llvmPackages_36;
+      in rec {
+      z3-spacer = pkgs1609.callPackage ./pkgs/seahorn/z3-spacer.nix { };
+      seahorn = pkgs1609.callPackage ./pkgs/seahorn {
+        llvm = llvmPackages_36.llvm.override { enableSharedLibraries = false; };
+        inherit (llvmPackages_36) clang;
+        inherit z3-spacer;
+      };
+      seahorn-demo = callPackage ./pkgs/seahorn/demo { inherit seahorn; };
+    });
   }
   // (pkgs.callPackages ./pkgs/dg { })
   // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
