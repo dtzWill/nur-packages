@@ -125,6 +125,20 @@ let toplevel = {
     vmir-clang4 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_4) stdenv; };
     vmir-clang5 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_5) stdenv; };
     vmir-clang6 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_6) stdenv; };
+
+    # XXX: scoping
+    # These expressions are a bit dated
+    z3-spacer = callPackage ./pkgs/seahorn/z3-spacer.nix { };
+    seahorn = let 
+      pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
+      inherit (pkgs1609) llvmPackages_36;
+      in
+      callPackage ./pkgs/seahorn {
+      llvm = llvmPackages_36.llvm.override { enableSharedLibraries = false; };
+      inherit (llvmPackages_36) clang;
+      inherit z3-spacer;
+    };
+    seahorn-demo = callPackage ./pkgs/seahorn/demo { inherit seahorn; };
   }
   // (pkgs.callPackages ./pkgs/dg { })
   // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
