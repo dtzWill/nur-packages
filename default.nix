@@ -41,6 +41,8 @@ let toplevel = {
       inherit (pkgs.llvmPackages_4) llvm clang;
     };
 
+    htop3beta = callPackage ./pkgs/htop/3.nix { };
+
     iml = callPackage ./pkgs/iml { };
     patchelf-git = callPackage ./pkgs/patchelf { };
 
