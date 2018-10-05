@@ -11,13 +11,13 @@ let
   llvm_version = if (llvm ? release_version) then llvm.release_version else (builtins.parseDrvName llvm.name).version;
 in
 stdenv.mkDerivation rec {
-  version = "2018-10-05"; # Date of commit used
+  version = "2018-10-01"; # Date of commit used
   name = "dg_llvm${llvm_version}-${version}";
   src = fetchFromGitHub {
     owner = "mchalupa";
     repo = "dg";
-    rev = "7ba3a4d3751d66af5197511a3828181655093fc8";
-    sha256 = "114c0wwfv46bcmran9s6ab8y4rz03kka85zrc2j8wqsrgzl5pg5j";
+    rev = "f9548829ce413a2cbc4feaa021dde56f3c19a0d2";
+    sha256 = "0v9xkarcp1qk6lar2z9jrx0l05wwvgxf8yvx9ybic2vq581h0bdz";
   };
 
   enableParallelBuilding = true;
@@ -28,6 +28,10 @@ stdenv.mkDerivation rec {
     patchShebangs .
 
     substituteInPlace tools/git-version.sh --replace '`git rev-parse --short=8 HEAD`' ${builtins.substring 0 7 src.rev}
+
+    substituteInPlace src/llvm/analysis/PointsTo/PointerSubgraph.cpp \
+      --replace 'static_assert(sizeof(Offset::type) == sizeof(uint64_t))' \
+                'static_assert(sizeof(Offset::type) == sizeof(uint64_t), "offset type must be uint64_t")'
 
     # Assertions cause program to abort (!), fix tests by flushing stdio first
     # newer glibc (2.27+) no longer do this.
