@@ -29,10 +29,6 @@ stdenv.mkDerivation rec {
 
     substituteInPlace tools/git-version.sh --replace '`git rev-parse --short=8 HEAD`' ${builtins.substring 0 7 src.rev}
 
-    substituteInPlace src/llvm/analysis/PointsTo/PointerSubgraph.cpp \
-      --replace 'static_assert(sizeof(Offset::type) == sizeof(uint64_t))' \
-                'static_assert(sizeof(Offset::type) == sizeof(uint64_t), "offset type must be uint64_t")'
-
     # Assertions cause program to abort (!), fix tests by flushing stdio first
     # newer glibc (2.27+) no longer do this.
     substituteInPlace tests/test_assert.c \
@@ -59,7 +55,7 @@ stdenv.mkDerivation rec {
 
   checkPhase = ''
     # Workaround so tests can find the just-built libs before installation
-    export LD_LIBRARY_PATH=$PWD/src:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=$PWD/src:$PWD/lib:$LD_LIBRARY_PATH
 
     # Run tests in parallel
     export CTEST_PARALLEL_LEVEL=$NIX_BUILD_CORES
