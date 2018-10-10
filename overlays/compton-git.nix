@@ -20,7 +20,7 @@ self: super:
       #];
 
       buildInputs = with self; with xorg; [
-        dbus libX11 libXcomposite libXext
+        dbus libX11 /* libXcomposite */ libXext xproto
         libXinerama libdrm pcre libxml2 libxslt libconfig libGL
         # Removed:
         # libXdamage libXrender libXrandr
