@@ -10,6 +10,9 @@ self: super: {
     };
     patches = null; # Drop patch from upstream included by using latest
 
+    # drop doc output because generating from git requires too many deps
+    outputs = [ "out" "man" /* "doc" */ ];
+
     # Drop existing nativeBuildinputs, don't use autoreconfHook
     nativeBuildInputs = with self; [ git perl which automake autoconf libtool tcl bison /* python */ ];
 
