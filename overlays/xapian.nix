@@ -10,11 +10,19 @@ self: super: {
     };
     patches = null; # Drop patch from upstream included by using latest
 
-    nativeBuildInputs = (o.nativeBuildInputs or []) ++ [ self.perl ];
+    # Drop existing nativeBuildinputs, don't use autoreconfHook
+    nativeBuildInputs = with self; [ git perl which automake autoconf libtool tcl bison /* python */ ];
 
-    preAutoreconf = ''
-      patchShebangs bootstrap */preautoreconf
-      ./bootstrap
+    preConfigure = ''
+      patchShebangs bootstrap
+      ./bootstrap --download-tools=never xapian-core
+
+      cd xapian-core
     '';
+
+    configureFlags = (o.configureFlags or []) ++ [ "--enable-maintainer-mode" "--disable-documentation" ];
+
+    # It's 2018
+    enableParallelBuilding = true;
   });
 }
