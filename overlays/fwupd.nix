@@ -1,13 +1,29 @@
 self: super: {
   fwupd = super.fwupd.overrideAttrs(o: rec {
     name = "fwupd-${version}";
-    version = "2018-10-10";
+    version = "2018-10-12";
 
     src = super.fetchFromGitHub {
       owner = "hughsie";
       repo = "fwupd";
-      rev = "78599edcc9194a68f1d412ff65875a98a7832011";
-      sha256 = "1pi06gbqp4p6za3s8vmcy24hf7p4inzc34d5q4bf2bk7gf23kw5y";
+      rev = "802a279bd2b53e59f1d1d363c2d106e59b59b6fb";
+      sha256 = "0b7l1v1sirxz04pf8g8mid6kpyyzxbazjj15crmb3brzv8jpz5fa";
     };
+
+    # Original:
+    #buildInputs = [
+    #  polkit appstream-glib gusb sqlite libarchive libsoup elfutils libsmbios gnu-efi libyaml
+    #  libgudev colord gpgme libuuid gnutls glib-networking efivar json-glib umockdev
+    #  bash-completion
+    #];
+    buildInputs = with self; [
+      # Removed:
+      # appstream-glib
+      # Remaining:
+      polkit gusb sqlite libarchive libsoup elfutils libsmbios gnu-efi libyaml
+      libgudev colord gpgme libuuid gnutls glib-networking efivar json-glib umockdev
+      bash-completion
+    ];
+
   });
 }
