@@ -10,6 +10,12 @@ self: super: {
       leaveDotGit = true;
     };
 
-    nativeBuildInputs = (o.nativeBuildInputs or []) ++ [ self.autoreconfHook self.git ];
+    nativeBuildInputs = (o.nativeBuildInputs or [])
+    ++ (with self; [
+      git
+      autoconf automake libtool
+    ]);
+
+    preConfigure = "./bootstrap";
   });
 }
