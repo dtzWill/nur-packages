@@ -45,4 +45,11 @@ stdenv.mkDerivation rec {
     wrapProgram $out/sbin/laptop_mode \
       --prefix PATH : "${stdenv.lib.makeBinPath [ coreutils which utillinux gnused gnugrep gawk ]}"
   '';
+
+  meta = with stdenv.lib; {
+    homepage = http://rickysarraf.github.io/laptop-mode-tools;
+    description = "Power Savings tool for Linux";
+    license = licenses.gpl2;
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
