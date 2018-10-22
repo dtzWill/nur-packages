@@ -1,7 +1,7 @@
 { pkgs, lib, callPackage }:
 
 let
-  svfs = {
+  svfs = rec {
     "4" = {
       path = ./4.nix;
       llvmPackages = pkgs.llvmPackages_4;
@@ -10,11 +10,11 @@ let
       path = ./6.nix;
       llvmPackages = pkgs.llvmPackages_6;
     };
-    "master" = {
+    master = {
       path = ./master.nix;
-      # likely llvm7 soon
-      llvmPackages = pkgs.llvmPackages_6;
+      llvmPackages = pkgs.llvmPackages_7;
     };
+    "7" = master;
   };
   mkPkgs = info: lib.recurseIntoAttrs rec {
     svf = callPackage info.path { inherit (info.llvmPackages) llvm; };

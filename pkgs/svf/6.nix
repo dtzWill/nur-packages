@@ -1,12 +1,12 @@
 { stdenv, fetchFromGitHub, llvm, cmake }:
 
 let
-  srcinfo = {
-    version = "2018-10-19";
+  srcinfo = rec {
+    version = "1.5"; # tagged as last LLVM 6 version before moving to LLVM 7
     src = fetchFromGitHub {
       owner = "SVF-tools";
       repo = "SVF";
-      rev = "8607025bb1ec0f69f6df8f6d163f43bc9cf502ac";
+      rev = "SVF-${version}";
       sha256 = "0s0cp5ykkj6p79xz6xxbkj5sibasjih1kh3xfs671asj18g0rj3k";
     };
   };
