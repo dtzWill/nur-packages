@@ -1,18 +1,29 @@
-{ stdenv, fetchFromGitHub, llvm, cmake }:
+{ pkgs, lib, callPackage }:
 
 let
-  srcinfo = {
-    version = "2018-10-21";
-    src = fetchFromGitHub {
-      owner = "SVF-tools";
-      repo = "SVF";
-      rev = "21c4b6a1d82fbad32b6b3d2701365774c70cb4d1";
-      sha256 = "1kyn3sxnx5sd0bx71gzrccrvxscw5a25mnvh5kfdpyj7yy3jzndw";
+  svfs = {
+    "4" = {
+      path = ./4.nix;
+      llvmPackages = pkgs.llvmPackages_4;
+    };
+    "6" = {
+      path = ./6.nix;
+      llvmPackages = pkgs.llvmPackages_6;
+    };
+    "master" = {
+      path = ./master.nix;
+      # likely llvm7 soon
+      llvmPackages = pkgs.llvmPackages_6;
     };
   };
-in import ./generic.nix { inherit stdenv llvm cmake srcinfo; } {
-  postInstall = ''
-    install -Dm755 {.,$out}/bin/saber
-    install -Dm755 {.,$out}/bin/wpa
-  '';
-}
+  mkPkgs = info: rec {
+    svf = callPackage info.path { inherit (info.llvmPackages) llvm; };
+    ptaben-fi = callPackage ./ptaben.nix {
+      inherit (info.llvmPackages) stdenv llvm clang;
+      inherit svf;
+    };
+    ptaben-fs = ptaben-fi.override { testFSPTA = true; };
+  };
+
+in
+  lib.mapAttrs' (n: v: lib.nameValuePair "svfPkgs_${n}" (mkPkgs v)) svfs
