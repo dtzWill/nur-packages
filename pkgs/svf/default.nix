@@ -14,6 +14,9 @@ let
       path = ./master.nix;
       llvmPackages = pkgs.llvmPackages_7;
     };
+    # also make this available under "svfPkgs_7",
+    # matching what we do for 4 and 6.
+    # (for use when it matters LLVM7 is used, not 8 or w/e)
     "7" = master;
   };
   mkPkgs = info: lib.recurseIntoAttrs rec {
