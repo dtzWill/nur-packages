@@ -16,7 +16,7 @@ let
       llvmPackages = pkgs.llvmPackages_6;
     };
   };
-  mkPkgs = info: rec {
+  mkPkgs = info: lib.recurseIntoAttrs rec {
     svf = callPackage info.path { inherit (info.llvmPackages) llvm; };
     ptaben-fi = callPackage ./ptaben.nix {
       inherit (info.llvmPackages) stdenv llvm clang;

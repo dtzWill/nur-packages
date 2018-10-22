@@ -136,6 +136,6 @@ let toplevel = {
   // (pkgs.callPackages ./pkgs/dg { })
   // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
   // (pkgs.callPackages ./pkgs/xi { })
-  // (pkgs.callPackages ./pkgs/svf { })
+  // (pkgs.callPackages ./pkgs/svf { lib = pkgs.lib // toplevel.lib; /* FIXME */ })
   );
 }; in toplevel #  // toplevel.pkgs
