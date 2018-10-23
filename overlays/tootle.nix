@@ -1,12 +1,12 @@
 self: super: {
   tootle = super.tootle.overrideAttrs (o: rec {
     name = "tootle-${version}";
-    version = "2018-08-27";
+    version = "2018-10-23";
     src = super.fetchFromGitHub {
       owner = "bleakgrey";
       repo = "tootle";
-      rev = "7b3dbfe7e6aba5f39366ae8e310c965dfd6aa148";
-      sha256 = "0wa04cljv6nhg6j9ygs7hhariwgnxjdmgfpvhb5w4677jq3zspjc";
+      rev = "534ff38feda3b6467e62edf0045d5ca097790a3b";
+      sha256 = "0xi1gspqqkqpl8a2smvaxcj7kq0q8bhfl424cw04a3rvjn9a1z59";
     };
   });
 }
