@@ -16,6 +16,7 @@ let toplevel = {
     ccontrol = callPackage ./pkgs/ccontrol { };
 
     chstk = callPackage ./pkgs/chstk { };
+    chstk-musl = pkgs.pkgsMusl.callPackage ./pkgs/chstk { };
 
     diva = callPackage ./pkgs/diva { };
 
