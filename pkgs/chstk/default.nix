@@ -1,14 +1,14 @@
 { stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
-  name = "chelf-${version}";
-  version = "2018-10-26";
+  name = "chstk-${version}";
+  version = "0.1";
 
   src = fetchFromGitHub {
     owner = "Gottox";
     repo = "chstk";
-    rev = "eecd272be6494f542978160c19f1ba9349d5bce1";
-    sha256 = "1iappq7nm72pa9kbdi0vxj1sxxwrcpml99iq5kxrdjspz6kgvxvz";
+    rev = "v${version}";
+    sha256 = "1zdp37y9wfain8qwnyrf6lvr6nvz84hbnffflc3b2b1m5bwxjh8l";
   };
 
   postPatch = ''
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/bin
-    mv chelf $out/bin/chelf
+    mv chstk $out/bin/chstk
   '';
 
   meta = with stdenv.lib; {
