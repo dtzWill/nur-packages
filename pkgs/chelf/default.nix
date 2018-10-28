@@ -11,6 +11,10 @@ stdenv.mkDerivation rec {
     sha256 = "1iappq7nm72pa9kbdi0vxj1sxxwrcpml99iq5kxrdjspz6kgvxvz";
   };
 
+  postPatch = ''
+    substituteInPlace Makefile --replace "-Werror" ""
+  '';
+
   installPhase = ''
     mkdir -p $out/bin
     mv chelf $out/bin/chelf
