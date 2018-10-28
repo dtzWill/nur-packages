@@ -11,9 +11,10 @@ stdenv.mkDerivation rec {
     sha256 = "1iappq7nm72pa9kbdi0vxj1sxxwrcpml99iq5kxrdjspz6kgvxvz";
   };
 
-  postPatch = ''
-    substituteInPlace Makefile --replace "-Werror" ""
-  '';
+  patches = [
+    ./0001-explicitly-initialize-elf-to-NULL-so-not-uninit-on-c.patch
+    ./0002-Fix-inverted-size-check.patch
+  ];
 
   installPhase = ''
     mkdir -p $out/bin
