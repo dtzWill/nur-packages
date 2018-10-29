@@ -3,13 +3,13 @@ self: super:
     compton-git = super.compton-git.overrideAttrs (o: rec {
       name = "compton-${version}";
       #name = "compton-git-${version}";
-      version = "3-rc2"; # "2018-10-15";
+      version = "3"; # "2018-10-15";
 
       src = super.fetchFromGitHub {
         owner  = "yshui";
         repo   = "compton";
         rev    = "v${version}";
-        sha256 = "0458jbf9xrgl599pc3klfavrcnywgyfyasih677qanl3z78imkxx";
+        sha256 = "15q1hg0rykxs56xl5pbwvqnp7kkhr1b2ryrlhlgy3zqpvpn2xkb1";
       };
 
       postPatch = (o.postPatch or "") + ''
