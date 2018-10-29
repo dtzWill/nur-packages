@@ -16,8 +16,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "mchalupa";
     repo = "dg";
-    rev = "b38b801939eeef69c5da6b083c5b0add9c25db9b";
-    sha256 = "0j0ivv2q7783id8ffwyjq2wp3ildpl0lqnzv6fg7pb3smlp5n5p5";
+    rev = "921ee0d9e4f9f03ae65806aee43dc15e2648d30e";
+    sha256 = "01988vsr58kjnnfwwpk860g73758q3jl14m18wnx87ixkg4j8pmn";
   };
 
   enableParallelBuilding = true;
