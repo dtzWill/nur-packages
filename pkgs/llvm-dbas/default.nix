@@ -18,10 +18,6 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ cmake ];
   buildInputs = [ llvm ];
 
-  cmakeBuildType = "RelWithDebInfo";
-
-  dontStrip = true;
-
   meta = with stdenv.lib; {
     description = "LLVM Assembler adding Debug Information at IR Level";
     homepage = https://github.com/thestr4ng3r/llvm-dbas;
