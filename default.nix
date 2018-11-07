@@ -121,7 +121,7 @@ let toplevel = {
 
     # XXX: scoping
     # These expressions are a bit dated
-    seahornPkgs = lib.recurseIntoAttrs (
+    seahornPkgs = /* lib.recurseIntoAttrs */ (
       let 
         pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
         inherit (pkgs1609) llvmPackages_36;
