@@ -124,15 +124,20 @@ let toplevel = {
     seahornPkgs = lib.recurseIntoAttrs (
       let 
         pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
-        inherit (pkgs1609) llvmPackages_36;
+        inherit (pkgs1609) stdenv llvmPackages_36;
       in rec {
-      z3-spacer = pkgs1609.callPackage ./pkgs/seahorn/z3-spacer.nix { };
-      seahorn = pkgs1609.callPackage ./pkgs/seahorn {
-        llvm = llvmPackages_36.llvm.override { enableSharedLibraries = false; };
-        inherit (llvmPackages_36) clang;
-        inherit z3-spacer;
-      };
-      seahorn-demo = pkgs1609.callPackage ./pkgs/seahorn/demo { inherit seahorn; };
+        z3-spacer = import ./pkgs/seahorn/z3-spacer.nix {
+          inherit (pkgs1609) stdenv fetchgit python2;
+        };
+        seahorn = import ./pkgs/seahorn {
+          llvm = llvmPackages_36.llvm.override { enableSharedLibraries = false; };
+          inherit (llvmPackages_36) clang;
+          inherit z3-spacer;
+          inherit stdenv;
+          inherit (pkgs1609) fetchFromGitHub cmake boost ncurses gmp python;
+          inherit (pkgs1609) git subversionClient;
+        };
+        seahorn-demo = import ./pkgs/seahorn/demo { inherit stdenv seahorn; };
     });
   }
   // (pkgs.callPackages ./pkgs/dg { })
