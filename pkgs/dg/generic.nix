@@ -13,7 +13,6 @@ in
 stdenv.mkDerivation rec {
   version = "2018-11-14"; # Date of commit used
   name = "dg_llvm${llvm_version}-${version}";
-
   src = fetchFromGitHub {
     owner = "mchalupa";
     repo = "dg";
@@ -29,15 +28,13 @@ stdenv.mkDerivation rec {
     patchShebangs .
 
     substituteInPlace tools/git-version.sh --replace '`git rev-parse --short=8 HEAD`' ${builtins.substring 0 7 src.rev}
-  '' + ''
+
     # Assertions cause program to abort (!), fix tests by flushing stdio first
     # newer glibc (2.27+) no longer do this.
     substituteInPlace tests/test_assert.c \
       --replace 'assert(0 && "assertion failed");' \
                 'fflush(0); assert(0 && "assertion failed");'
   '';
-
-  patches = [ ./no-llvm-vr-dump-yet.patch ];
 
   cmakeFlags = [
     "-DLLVM_ENABLE_ASSERTIONS=ON"
