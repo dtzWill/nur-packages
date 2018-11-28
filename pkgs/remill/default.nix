@@ -131,7 +131,7 @@ let
       cd tools
     '';
 
-    propagatedBuildInputs = [ python-protobuf python2Packages.python_magic ];
+    propagatedBuildInputs = [ python-protobuf python2Packages.python_magic python2Packages.six ];
 
     inherit meta;
   };
