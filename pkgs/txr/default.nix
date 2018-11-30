@@ -1,0 +1,13 @@
+{ stdenv, bison, flex, fetchurl }:
+
+stdenv.mkDerivation rec {
+  name = "txr-${version}";
+  version = "203";
+
+  src = fetchurl {
+    url = "http://www.kylheku.com/cgit/txr/snapshot/${name}.tar.bz2";
+    sha256 = "1lhcgr8h39bjn0bdcl10n7d1q5hygspza8m2xmcmgqjp8542mlx8";
+  };
+
+  nativeBuildInputs = [ bison flex ];
+}
