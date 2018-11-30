@@ -10,4 +10,13 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ bison flex ];
+
+  enableParallelBuilding = true;
+
+  meta = with stdenv.lib; {
+    description = "Programming language for convenient data munging";
+    license = licenses.bsd2;
+    homepage = http://nongnu.org/txr;
+    maintainers = with stdenv.lib.maintainers; [ dtzWill ];
+  };
 }
