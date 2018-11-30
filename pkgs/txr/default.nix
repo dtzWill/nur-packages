@@ -1,4 +1,4 @@
-{ stdenv, bison, flex, fetchurl }:
+{ stdenv, fetchurl, bison, flex, libffi }:
 
 stdenv.mkDerivation rec {
   name = "txr-${version}";
@@ -10,8 +10,12 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ bison flex ];
+  buildInputs = [ libffi ];
 
   enableParallelBuilding = true;
+
+  doCheck = false;
+  checkTarget = "tests";
 
   meta = with stdenv.lib; {
     description = "Programming language for convenient data munging";
