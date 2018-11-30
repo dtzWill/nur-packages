@@ -22,6 +22,8 @@ stdenv.mkDerivation rec {
   # Remove failing test-- mentions 'usr/bin' so probably related :)
   preCheck = "rm -rf tests/017";
 
+  # TODO: install 'tl.vim', make avail when txr is installed or via plugin
+
   meta = with stdenv.lib; {
     description = "Programming language for convenient data munging";
     license = licenses.bsd2;
