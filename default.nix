@@ -141,6 +141,7 @@ let toplevel = {
   // (pkgs.callPackages ./pkgs/dg { })
   // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
   // { luculent = pkgs.callPackages ./pkgs/luculent { }; }
+  // { hack = pkgs.callPackages ./pkgs/hack { }; }
   // (pkgs.callPackages ./pkgs/xi { })
   // (pkgs.callPackages ./pkgs/svf { lib = pkgs.lib // toplevel.lib; /* FIXME */ })
   ));
