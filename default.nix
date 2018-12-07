@@ -17,6 +17,8 @@ let toplevel = {
 
     chelf = callPackage ./pkgs/chelf { };
 
+    crex = callPackage ./pkgs/crex { };
+
     diva = callPackage ./pkgs/diva { };
 
     dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
