@@ -33,7 +33,7 @@ fetchzip {
       the license is available in LICENSE.md" (From the GitHub page)
     */
     license = licenses.free;
-    maintainers = with maintainers; [ dtzwill ];
+    maintainers = with maintainers; [ dtzWill ];
     platforms = platforms.all;
   };
 }
