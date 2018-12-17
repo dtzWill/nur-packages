@@ -10,7 +10,9 @@ self: super: {
     };
 
     makeFlags = (o.makeFlags or []) ++ [
-      "TLP_FLIB=${placeholder "out"}/share/tlp/func.d"
+      # not sure why we put things in share/tlp-pm vs default share/tlp
+      # but follow along for now.
+      "TLP_FLIB=${placeholder "out"}/share/tlp-pm/func.d"
     ];
   });
 }
