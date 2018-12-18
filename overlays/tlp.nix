@@ -14,5 +14,10 @@ self: super: {
       # but follow along for now.
       "TLP_FLIB=${placeholder "out"}/share/tlp-pm/func.d"
     ];
+
+    # Fix typo
+    postPatch = (o.postPatch or "") + ''
+      substituteInPlace tlp-stat.in --replace echofi echo
+    '';
   });
 }
