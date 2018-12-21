@@ -5,8 +5,9 @@ self: super: {
     src = super.fetchFromGitHub {
       owner = "zsh-users";
       repo = "zsh-autosuggestions";
-      rev = "v${version}";
-      sha256 = "19qkg4b2flvnp2l0cbkl4qbrnl8d3lym2mmh1mx9nmjd7b81r3pf";
+#      rev = "v${version}";
+      rev = "ebc2c07ac87388f70047f38083f747f296cffb6a";
+      sha256 = "0q3p4azra8afdd3nsk4rc342kf3hik2jb3zsag749l6zhwirvd33";
     };
   });
 }
