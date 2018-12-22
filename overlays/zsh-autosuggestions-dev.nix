@@ -1,13 +1,13 @@
 self: super: {
   zsh-autosuggestions-dev = super.zsh-autosuggestions.overrideAttrs (o: rec {
     name = "zsh-autosuggestions-${version}";
-    version = "0.5.0";
+    version = "0.5.0-git";
     src = super.fetchFromGitHub {
       owner = "zsh-users";
       repo = "zsh-autosuggestions";
 #      rev = "v${version}";
-      rev = "ebc2c07ac87388f70047f38083f747f296cffb6a";
-      sha256 = "0q3p4azra8afdd3nsk4rc342kf3hik2jb3zsag749l6zhwirvd33";
+      rev = "50579b33716f2b64251f6f192b2a89612c77caf8";
+      sha256 = "0jzazjd4s7xk4ccwgz0fvjrr3jc3528dgvgi8r71sn2ifnp12879";
     };
   });
 }
