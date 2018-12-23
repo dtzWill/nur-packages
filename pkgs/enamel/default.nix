@@ -35,6 +35,11 @@ in rustPlatform.buildRustPackage rec {
     ./0004-Cargo.lock-bump.patch
   ];
 
+  postPatch = ''
+    substituteInPlace enamel-core/src/lib.rs \
+      --replace '#![feature(custom_derive)]' ""
+  '';
+
   cargoSha256 = "0vl8lf6iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
   meta = with lib; {
