@@ -1,4 +1,4 @@
-{ pkgs, lib, fetchFromGitHub, sassc, glib, gtk3, notmuch, libsoup, gmime3 }:
+{ pkgs, lib, fetchFromGitHub, makeRustPlatform, sassc, glib, gtk3, notmuch, libsoup, gmime3 }:
 
 # :(
 let
@@ -9,25 +9,11 @@ let
     rev = "2945b0b6b2fd19e7d23bac695afd65e320efcebe";
     sha256 = "034m1dryrzh2lmjvk3c0krgip652dql46w5yfwpvh7gavd3iypyw";
   };
-in
-with import "${mozilla-overlay-src.out}/rust-overlay.nix" pkgs pkgs;
-#stdenv.mkDerivation {
-#  name = "rust-env";
-#  buildInputs = [
-#    # Note: to use use stable, just replace `nightly` with `stable`
-#    latest.rustChannels.nightly.rust
-#
-#    # Add some extra dependencies from `pkgs`
-#    pkgconfig openssl
-#  ];
-#
-#  # Set Environment Variables
-#  RUST_BACKTRACE = 1;
-#}
-let
-  rustPlatform = pkgs.makeRustPlatform {
-    cargo = latest.rustChannels.nightly.rust;
-    rustc = latest.rustChannels.nightly.rust;
+
+  rustLatest = (import "${mozilla-overlay-src.out}/rust-overlay.nix" pkgs pkgs).latest;
+  rustPlatform = makeRustPlatform {
+    cargo = rustLatest.rustChannels.nightly.rust;
+    rustc = rustLatest.rustChannels.nightly.rust;
   };
 in rustPlatform.buildRustPackage rec {
   name = "enamel-${version}";
