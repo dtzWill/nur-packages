@@ -1,4 +1,4 @@
-{ pkgs, lib, fetchFromGitHub, makeRustPlatform, sassc, glib, gtk3, notmuch, libsoup, gmime3 }:
+{ pkgs, lib, fetchFromGitHub, makeRustPlatform, sassc, glib, gtk3, notmuch, libsoup, gmime3, webkitgtk }:
 
 # :(
 let
@@ -26,7 +26,7 @@ in rustPlatform.buildRustPackage rec {
     sha256 = "1qw1qymrnx1ac0qk95q84jq25h41a64whmfmxdv9yrxwfhs3fqnb";
   };
 
-  buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 ];
+  buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk ];
 
   cargoPatches = [
     ./0001-Don-t-look-for-deps-locally-that-don-t-generally-exi.patch
