@@ -10,9 +10,10 @@ let
     sha256 = "1b0yng19vshpzqqzqdh1ffcvawyb4pyjmmwwclmx99si2xzb148s";
   };
   nur-combined = import "${nur-combined-src}" { inherit pkgs; };
-  rust-nightly = nur-combined.repos.mozilla.latest.rustChannels.nightly;
+  rust-nightly = nur-combined.repos.mozilla.latest.rustChannels.nightly.rust;
   rustPlatform = makeRustPlatform {
-    inherit (rust-nightly) cargo rustc;
+    cargo = rust-nightly;
+    rustc = rust-nightly;
   };
 in rustPlatform.buildRustPackage rec {
   name = "enamel-${version}";
