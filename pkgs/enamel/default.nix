@@ -44,6 +44,8 @@ in rustPlatform.buildRustPackage rec {
 
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
+    license = licenses.gpl3;
+    broken = true;
   };
 }
 
