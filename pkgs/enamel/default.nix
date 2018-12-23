@@ -38,6 +38,8 @@ in rustPlatform.buildRustPackage rec {
       --replace '#![feature(custom_derive)]' ""
 
     substituteInPlace enamel-core/src/database/thread.rs \
+      --replace "where 'd: 'q" "" \
+      --replace "'d: 'q," "" \
       --replace ", 'q" "" \
       --replace ": 'q" ""
   '';
