@@ -31,8 +31,15 @@ in rustPlatform.buildRustPackage rec {
   cargoPatches = [
     ./0001-Don-t-look-for-deps-locally-that-don-t-generally-exi.patch
     ./0002-Cargo.lock-init.patch
+    ./0003-use-develop-branch-of-notmuch-rs.patch
+    ./0004-Cargo.lock-bump.patch
   ];
 
   cargoSha256 = "1hlm1pp9917ri9xr72qg43yx7cf2g4hx3gx060cr102czj06c4i1";
+
+  meta = {
+    maintainers = with maintainers; [ dtzWill ];
+    broken = true;
+  };
 }
 

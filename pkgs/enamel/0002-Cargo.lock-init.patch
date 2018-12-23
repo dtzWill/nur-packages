@@ -1,7 +1,7 @@
 From c862e25afb2aaeabab4340be2759b58e88520a3b Mon Sep 17 00:00:00 2001
 From: Will Dietz <w@wdtz.org>
 Date: Sat, 22 Dec 2018 20:26:37 -0600
-Subject: [PATCH 2/2] Cargo.lock: init
+Subject: [PATCH 2/4] Cargo.lock: init
 
 ---
  Cargo.lock | 2047 ++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,7 +1,7 @@
 From 5ea92c7a417cb81d9103b1af7229495cf14b2cff Mon Sep 17 00:00:00 2001
 From: Will Dietz <w@wdtz.org>
 Date: Sat, 22 Dec 2018 20:21:50 -0600
-Subject: [PATCH 1/2] Don't look for deps locally that don't generally exist
+Subject: [PATCH 1/4] Don't look for deps locally that don't generally exist
 
 ---
  enamel-core/Cargo.toml |  8 ++++----
