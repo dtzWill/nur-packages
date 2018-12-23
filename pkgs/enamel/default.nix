@@ -35,11 +35,10 @@ in rustPlatform.buildRustPackage rec {
     ./0004-Cargo.lock-bump.patch
   ];
 
-  cargoSha256 = "1hlm1pp9917ri9xr72qg43yx7cf2g4hx3gx060cr102czj06c4i1";
+  cargoSha256 = "0vl8lf6iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
-  meta = {
+  meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
-    broken = true;
   };
 }
 
