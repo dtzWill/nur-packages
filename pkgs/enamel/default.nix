@@ -33,17 +33,6 @@ in rustPlatform.buildRustPackage rec {
     ./0002-Cargo.lock-init.patch
   ];
 
-  postPatch = ''
-    substituteInPlace enamel-core/src/lib.rs \
-      --replace '#![feature(custom_derive)]' ""
-
-    substituteInPlace enamel-core/src/database/thread.rs \
-      --replace "where 'd: 'q" "" \
-      --replace "'d: 'q," "" \
-      --replace ", 'q" "" \
-      --replace ": 'q" ""
-  '';
-
   cargoSha256 = "1hlm1pp9917ri9xr72qg43yx7cf2g4hx3gx060cr102czj06c4i1";
 }
 
