@@ -2,18 +2,17 @@
 
 # :(
 let
-  mozilla-overlay-src = fetchFromGitHub {
-    owner = "mozilla";
-    repo = "nixpkgs-mozilla";
-    # commit from: 2018-03-27
-    rev = "2945b0b6b2fd19e7d23bac695afd65e320efcebe";
-    sha256 = "034m1dryrzh2lmjvk3c0krgip652dql46w5yfwpvh7gavd3iypyw";
+  nur-combined-src = fetchFromGitHub {
+    owner = "nix-community";
+    repo = "nur-combined";
+    # commit from: 2018-12-23
+    rev = "ba89a7a9a4a6cf4e1a9fd193ff577380d6fa3a86";
+    sha256 = "1b0yng19vshpzqqzqdh1ffcvawyb4pyjmmwwclmx99si2xzb148s";
   };
-
-  rustLatest = (import "${mozilla-overlay-src.out}/rust-overlay.nix" pkgs pkgs).latest;
+  nur-combined = import "${nur-combined-src}" { inherit pkgs; };
+  rust-nightly = nur-combined.repos.mozilla.latest.rustChannels.nightly;
   rustPlatform = makeRustPlatform {
-    cargo = rustLatest.rustChannels.nightly.rust;
-    rustc = rustLatest.rustChannels.nightly.rust;
+    inherit (rust-nightly) cargo rustc;
   };
 in rustPlatform.buildRustPackage rec {
   name = "enamel-${version}";
