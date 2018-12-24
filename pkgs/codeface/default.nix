@@ -8,13 +8,17 @@ stdenv.mkDerivation rec {
     owner = "chrissimpkins";
     repo = "codeface";
     rev = "ac9064e7b585ba190b201e5f386c47f3bbceb51b";
-    sha256 = "1hc21k0y6mf7ls6js9wqyaxv0vkyrmfadl8szvpymj8bvs27gbv8";
+    sha256 = "0p73ybfwqygnbkl74v2sqvj93ql06j199jjg6w72jwrnvbc9725g";
   };
+
+  dontBuild = true;
+  dontPatchShebangs = true;
+  dontPatchELF = true;
 
   # TODO: otf
   installPhase = ''
     mkdir -p $out/share/fonts/truetype
-    cp */*.ttf $out/share/fonts/truetype/
+    cp fonts/*/*.ttf $out/share/fonts/truetype/
   '';
 
   meta = with stdenv.lib; {
