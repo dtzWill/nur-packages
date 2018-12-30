@@ -28,7 +28,7 @@ in rustPlatform.buildRustPackage rec {
 
   buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk ];
 
-  cargoSha256 = "0vl8lf7iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
+  cargoSha256 = "1111111111111111111111111111111111111111111111111111";
 
   cargoPatches = [ ./deps.patch ./cargo-lock.patch ];
   # cargoBuildFlags = [ "-p" "enamel-tui" ];
