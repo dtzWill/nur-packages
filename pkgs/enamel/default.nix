@@ -42,6 +42,8 @@ in rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "0vl8lf6iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
+  cargoBuildFlags = [ "-p" "enamel-tui" ];
+
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
     license = licenses.gpl3;
