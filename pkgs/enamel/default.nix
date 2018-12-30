@@ -44,6 +44,8 @@ in rustPlatform.buildRustPackage rec {
 
   cargoBuildFlags = [ "-p" "enamel-tui" ];
 
+  doCheck = false;
+
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
     license = licenses.gpl3;
