@@ -1,0 +1,85 @@
+From 628c1cf86750522699ce1d82e0634ac2fe5dd50f Mon Sep 17 00:00:00 2001
+From: Will Dietz <w@wdtz.org>
+Date: Sun, 30 Dec 2018 12:59:32 -0600
+Subject: [PATCH] don't look locally for deps, get from git; be consistent
+ re:notmuch-rs
+
+* webkit2gtk
+* gmime-rs
+---
+ enamel-core/Cargo.toml | 4 ++--
+ enamel-gtk/Cargo.toml  | 8 ++++----
+ enamel-tui/Cargo.toml  | 8 ++++----
+ 3 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/enamel-core/Cargo.toml b/enamel-core/Cargo.toml
+index f7688d1..b0042e9 100644
+--- a/enamel-core/Cargo.toml
++++ b/enamel-core/Cargo.toml
+@@ -35,11 +35,11 @@ gio-sys = { git = "https://github.com/gtk-rs/sys"}
+ gobject-sys = { git = "https://github.com/gtk-rs/sys"}
+ 
+ notmuch = "*"
+-# gmime = { git = "https://github.com/vhdirk/gmime-rs"}
++gmime = { git = "https://github.com/vhdirk/gmime-rs"}
+ 
+ # [patch.crates-io]
+ #notmuch = { path = "../../notmuch-rs" }
+-gmime = { path = "../../gmime-rs" }
++#gmime = { path = "../../gmime-rs" }
+ 
+ [features]
+ default = ["glib/subclassing",
+diff --git a/enamel-gtk/Cargo.toml b/enamel-gtk/Cargo.toml
+index b31c5d6..f551d8d 100644
+--- a/enamel-gtk/Cargo.toml
++++ b/enamel-gtk/Cargo.toml
+@@ -54,8 +54,8 @@ gtk-sys = { git = "https://github.com/gtk-rs/sys" }
+ gdk-sys = { git = "https://github.com/gtk-rs/sys" }
+ gdk-pixbuf-sys = { git = "https://github.com/gtk-rs/sys" }
+ cairo-sys-rs = { git = "https://github.com/gtk-rs/cairo" }
+-#webkit2gtk    = { git = "https://github.com/gtk-rs/webkit2gtk-rs" }
+-webkit2gtk    = { path = "../../webkit2gtk-rs" }
++webkit2gtk    = { git = "https://github.com/gtk-rs/webkit2gtk-rs" }
++#webkit2gtk    = { path = "../../webkit2gtk-rs" }
+ 
+ webkit2gtk-webextension = { git = "https://github.com/gtk-rs/webkit2gtk-webextension-rs" }
+ 
+@@ -73,11 +73,11 @@ relm-derive = { git = "https://github.com/vhdirk/relm" }
+ relm-state = { git = "https://github.com/vhdirk/relm" }
+ 
+ notmuch = "*"
+-# gmime = { git = "https://github.com/vhdirk/gmime-rs"}
++gmime = { git = "https://github.com/vhdirk/gmime-rs"}
+ 
+ # [patch.crates-io]
+ #notmuch = { path = "../../notmuch-rs" }
+-gmime = { path = "../../gmime-rs" }
++# gmime = { path = "../../gmime-rs" }
+ 
+ 
+ [features]
+diff --git a/enamel-tui/Cargo.toml b/enamel-tui/Cargo.toml
+index 76b67c3..60a394a 100644
+--- a/enamel-tui/Cargo.toml
++++ b/enamel-tui/Cargo.toml
+@@ -40,12 +40,12 @@ tui = "0.3.0"
+ enamel-core = { path = "../enamel-core" }
+ 
+ 
+-# notmuch = "*"
+-# gmime = { git = "https://github.com/vhdirk/gmime-rs"}
++notmuch = "*"
++gmime = { git = "https://github.com/vhdirk/gmime-rs"}
+ 
+ # [patch.crates-io]
+-notmuch = { path = "../../notmuch-rs" }
+-gmime = { path = "../../gmime-rs" }
++#notmuch = { path = "../../notmuch-rs" }
++#gmime = { path = "../../gmime-rs" }
+ 
+ [dev-dependencies]
+ cargo-expand = "*"
+-- 
+2.19.2
+

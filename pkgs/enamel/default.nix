@@ -30,6 +30,7 @@ in rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "0vl8lf7iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
+  cargoPatches = [ ./deps.patch ];
   # cargoBuildFlags = [ "-p" "enamel-tui" ];
 
   # doCheck = false;
