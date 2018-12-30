@@ -17,13 +17,13 @@ let
   };
 in rustPlatform.buildRustPackage rec {
   name = "enamel-${version}";
-  version = "2018-12-22";
+  version = "2018-12-30";
 
   src = fetchFromGitHub {
     owner = "vhdirk";
     repo = "enamel";
-    rev = "1bff1f498eb64ba173851cf75172c54be037939a";
-    sha256 = "1qw1qymrnx1ac0qk95q84jq25h41a64whmfmxdv9yrxwfhs3fqnb";
+    rev = "d09cd74cad2f3136bb1e31d9fde354eaf6cce76c";
+    sha256 = "01qz2c0x0zm4cp4rm8w8h605j62zsmzr0fqwkdyaw0w2xl91n4ia";
   };
 
   buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk ];
@@ -40,7 +40,7 @@ in rustPlatform.buildRustPackage rec {
       --replace '#![feature(custom_derive)]' ""
   '';
 
-  cargoSha256 = "0vl8lf6iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
+  cargoSha256 = "0vl8lf7iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
   cargoBuildFlags = [ "-p" "enamel-tui" ];
 
@@ -49,7 +49,7 @@ in rustPlatform.buildRustPackage rec {
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
     license = licenses.gpl3;
-    broken = true;
+    #broken = true;
   };
 }
 
