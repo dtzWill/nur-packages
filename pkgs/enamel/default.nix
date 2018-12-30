@@ -28,23 +28,11 @@ in rustPlatform.buildRustPackage rec {
 
   buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk ];
 
-  cargoPatches = [
-    ./0001-Don-t-look-for-deps-locally-that-don-t-generally-exi.patch
-    ./0002-Cargo.lock-init.patch
-    ./0003-use-develop-branch-of-notmuch-rs.patch
-    ./0004-Cargo.lock-bump.patch
-  ];
-
-  postPatch = ''
-    substituteInPlace enamel-core/src/lib.rs \
-      --replace '#![feature(custom_derive)]' ""
-  '';
-
   cargoSha256 = "0vl8lf7iwxm9iad6qxanfmcj2a7kmg7pc6a8qrbbng8drssrgf2n";
 
-  cargoBuildFlags = [ "-p" "enamel-tui" ];
+  # cargoBuildFlags = [ "-p" "enamel-tui" ];
 
-  doCheck = false;
+  # doCheck = false;
 
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
