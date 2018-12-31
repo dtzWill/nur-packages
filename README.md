@@ -1,8 +1,12 @@
-# nur-packages
+# nur-packages [![Build Status][build-status-shield]][build-status] [![Cachix Cache][cachix-cache-shield]][cachix-cache]
 
-**My personal [NUR](https://github.com/nix-community/NUR) repository**
+[build-status]: https://travis-ci.org/dtzWill/nur-packages
+[build-status-shield]: https://travis-ci.org/dtzWill/nur-packages.svg?branch=master
+[cachix-cache]: https://allvm.cachix.org
+[cachix-cache-shield]: https://img.shields.io/badge/cachix-allvm-blue.svg
 
-[![Build Status](https://travis-ci.com/dtzWill/nur-packages.svg?branch=master)](https://travis-ci.com/dtzWill/nur-packages)
-[![Cachix Cache](https://img.shields.io/badge/cachix-allvm-blue.svg)](https://allvm.cachix.org)
+dtzWill's personal [NUR][nur] repository. If you don't use the NUR, you can apply
+`overlay.nix` (but you should try the NUR).
 
+[nur]: https://github.com/nix-community/NUR
 
