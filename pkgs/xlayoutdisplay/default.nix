@@ -17,6 +17,14 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  # format security fixup
+  postPatch = ''
+    substituteInPlace test/test-Monitors.cpp \
+      --replace 'fprintf(lidStateFile, contents);' \
+                'fputs(contents, lidStateFile);'
+
+  '';
+
   meta = with stdenv.lib; {
     description = "Detects and arranges linux display outputs, using XRandR for detection and xrandr for arrangement";
     homepage = https://github.com/alex-courtis/xlayoutdisplay;
