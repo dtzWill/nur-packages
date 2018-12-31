@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, xorg, boost, cmake }:
+{ stdenv, fetchFromGitHub, xorg, boost, cmake, gtest }:
 
 stdenv.mkDerivation rec {
   name = "xlayoutdisplay-${version}";
@@ -13,6 +13,9 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ];
   buildInputs = with xorg; [ libX11 libXrandr libXcursor boost ];
+  checkInputs = [ gtest ];
+
+  doCheck = true;
 
   meta = with stdenv.lib; {
     description = "Detects and arranges linux display outputs, using XRandR for detection and xrandr for arrangement";
