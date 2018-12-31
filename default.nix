@@ -143,6 +143,7 @@ let toplevel = {
     });
   }
   // (pkgs.callPackages ./pkgs/dg { })
+  // { xlayout = pkgs.callPackage ./pkgs/xlayout { }; }
   // { agave = pkgs.callPackages ./pkgs/agave { }; }
   // { ankacoder = pkgs.callPackages ./pkgs/ankacoder { }; }
   // { ankacoder-condensed = pkgs.callPackages ./pkgs/ankacoder/condensed.nix { }; }
