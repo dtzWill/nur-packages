@@ -1,7 +1,7 @@
 { stdenv, fetchFromGitHub, xorg, boost, cmake }:
 
 stdenv.mkDerivation rec {
-  name = "xlayout-${version}";
+  name = "xlayoutdisplay-${version}";
   version = "1.0.2";
 
   src = fetchFromGitHub {
@@ -15,6 +15,9 @@ stdenv.mkDerivation rec {
   buildInputs = with xorg; [ libX11 libXrandr libXcursor boost ];
 
   meta = with stdenv.lib; {
+    description = "Detects and arranges linux display outputs, using XRandR for detection and xrandr for arrangement";
+    homepage = https://github.com/alex-courtis/xlayoutdisplay;
+    maintainers = with maintainers; [ dtzWill ];
     license = licenses.asl20;
   };
 }

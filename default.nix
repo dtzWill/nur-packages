@@ -143,7 +143,6 @@ let toplevel = {
     });
   }
   // (pkgs.callPackages ./pkgs/dg { })
-  // { xlayout = pkgs.callPackage ./pkgs/xlayout { }; }
   // { agave = pkgs.callPackages ./pkgs/agave { }; }
   // { ankacoder = pkgs.callPackages ./pkgs/ankacoder { }; }
   // { ankacoder-condensed = pkgs.callPackages ./pkgs/ankacoder/condensed.nix { }; }
@@ -154,5 +153,6 @@ let toplevel = {
   // { hack = pkgs.callPackages ./pkgs/hack { }; }
   // (pkgs.callPackages ./pkgs/xi { })
   // (pkgs.callPackages ./pkgs/svf { lib = pkgs.lib // toplevel.lib; /* FIXME */ })
+  // { xlayoutdisplay = pkgs.callPackage ./pkgs/xlayoutdisplay { }; }
   ));
 }; in toplevel #  // toplevel.pkgs
