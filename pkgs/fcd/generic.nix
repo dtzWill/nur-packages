@@ -2,7 +2,7 @@
 , fetchFromGitHub
 , llvm
 , python
-, capstone
+, capstone_3
 , cmake
 , rev
 , sha256
@@ -22,7 +22,7 @@ stdenv.mkDerivation rec {
     inherit rev sha256;
   };
 
-  buildInputs = [ llvm python capstone cmake ];
+  buildInputs = [ llvm python capstone_3 cmake ];
 
   patchPhase = ''
     sed -i 's,-isystem ''${LLVM_INCLUDE_DIRS},-isystem ''${LLVM_INCLUDE_DIRS} -isystem ${stdenv.cc.cc}/include,' CMakeLists.txt

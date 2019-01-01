@@ -27,6 +27,7 @@ let toplevel = {
 
     # enamel = callPackage ./pkgs/enamel { };
 
+    capstone_3 = callPackage ./pkgs/fcd/capstone.nix { };
     fcd4 = callPackage ./pkgs/fcd/4.nix { };
     fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
