@@ -6,15 +6,15 @@ stdenv.mkDerivation rec {
   version = "1.010";
 
   srcs = [
-    (fetchurl { url = https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.otf;
-    sha256 = "0bcrd5l5nrd1amhajknlvsaabqlwnwkjl1j4vrpq2232bwkdv3xg"; })
-    (fetchurl { url = https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.otf;
-    sha256 = "0lqkl517wv34lnhida4pf4iv21rdjwvnrim79bbilw703wy3mjmj"; })
+    (fetchurl { url = https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.ttf;
+    sha256 = "1srp3615ckshylqyh9wyd9i1i5d4d7qkd0nab3cwnxpj83npnrzz"; })
+    (fetchurl { url = https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.ttf;
+    sha256 = "0p0j74ibxlmlrxw30riz8gz0f3879pgbcsm63lc092av94phz8rb"; })
   ];
 
   buildCommand = ''
-    mkdir -p $out/share/fonts/opentype/
-    cp -a $srcs $out/share/fonts/opentype/
+    mkdir -p $out/share/fonts/truetype/
+    cp -a $srcs $out/share/fonts/truetype/
   '';
 
   meta = {
