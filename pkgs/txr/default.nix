@@ -9,8 +9,6 @@ stdenv.mkDerivation rec {
     sha256 = "1fw3rf3irwfkl0mjww5i6l1lqfdw77iv5h9wrix5cbfcivxqrd6b";
   };
 
-  patches = [ ./musl-configure.patch ];
-
   nativeBuildInputs = [ bison flex ];
   buildInputs = [ libffi ];
 
