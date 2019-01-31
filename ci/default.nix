@@ -6,7 +6,7 @@
 
 let
   logHandler = msg: builtins.trace "Ignoring evaluation failure of unfree:\n${msg}" true;
-  pkgs = import (src + "/release.nix") {
+  toplevel = import (src + "/release.nix") {
     inherit nixpkgs;
     args.config = {
       allowUnfree = false;
@@ -15,4 +15,8 @@ let
     };
   };
 in
-  pkgs
+  toplevel // {
+    pkgs = builtins.removeAttrs [
+      "stoke" "stoke-haswell" "stoke-sandybridge"
+    ] toplevel.pkgs;
+  }
