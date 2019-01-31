@@ -16,7 +16,7 @@ let
   };
 in
   toplevel // {
-    pkgs = builtins.removeAttrs [
+    pkgs = builtins.removeAttrs toplevel.pkgs [
       "stoke" "stoke-haswell" "stoke-sandybridge"
-    ] toplevel.pkgs;
+    ];
   }
