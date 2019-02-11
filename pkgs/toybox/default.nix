@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   doCheck = true;
   checkTarget = "tests";
 
-  installFlags = [ "PREFIX=$(out)/bin" ];
+  installFlags = [ "PREFIX=${placeholder "out"}/bin" ];
   installTargets = [ "install_flat" ];
 
   meta = with stdenv.lib; {
