@@ -1,4 +1,4 @@
-{ stdenv, fetchurl }:
+{ stdenv, fetchurl, coreutils, gnused, which }:
 
 stdenv.mkDerivation rec {
   name = "toybox-${version}";
@@ -13,11 +13,13 @@ stdenv.mkDerivation rec {
 
   configurePhase = "make defconfig";
 
+  nativeBuildInputs = [ gnused coreutils which ];
 
-  doCheck = true;
+  makeFlags = [ "VERBOSE=1" "PREFIX=${placeholder "out"}/bin" ];
+
+  doCheck = false;
   checkTarget = "tests";
 
-  installFlags = [ "PREFIX=${placeholder "out"}/bin" ];
   installTargets = [ "install_flat" ];
 
   meta = with stdenv.lib; {
