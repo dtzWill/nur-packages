@@ -14,10 +14,7 @@ let
   } ];
 
   # Based on upstream's 10-powerline-symbols.conf
-  mkPowerlineSymbolsConf = fonts: pkgs.writeTextFile {
-    name = "powerline-symbols-conf";
-    destination = "/etc/fonts/conf.d/10-powerline-symbols.conf";
-    text = ''
+  mkPowerlineSymbolsConf = fonts: ''
       <?xml version='1.0'?>
       <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>
       <fontconfig>
@@ -32,7 +29,6 @@ let
       '') fonts)}
       </fontconfig>
     '';
-  };
 
   fontNames = optionals cfg.enableDefaultFonts [
     # default family's in 2.7's 10-powerline-symbols.conf
@@ -62,7 +58,6 @@ let
     "Meslo LG S"
     "Meslo LG S DZ"
   ] ++ cfg.fonts;
-  powerlineSymbolsConf = mkPowerlineSymbolsConf fontNames;
 in
   {
     options.fonts.powerline-symbols = {
@@ -83,8 +78,9 @@ in
 
     config = mkIf cfg.enable {
       # TODO: check/ensure fontconfig is being used?
-      fonts.fontconfig.confPackages = mkAfter [ powerlineSymbolsConf ];
-      #fonts.fontconfig.localConf = powerlineSymbols
+      # XXX: for now dump into localConf :(
+      #fonts.fontconfig.confPackages = mkAfter [ powerlineSymbolsConf ];
+      fonts.fontconfig.localConf = mkPowerlineSymbolsConf fontNames;
       fonts.fonts = [ powerlineSymbolsFont ];
     };
   }
