@@ -25,7 +25,9 @@ let
       ${concatStringsSep "\n" (map (font: ''
         <alias>
           <family>${font}</family>
-          <prefer><family>PowerlineSymbols</family></prefer>
+          <prefer>
+            <family>PowerlineSymbols</family>
+          </prefer>
         </alias>
       '') fonts)}
       </fontconfig>
@@ -82,7 +84,7 @@ in
 
     config = mkIf cfg.enable {
       # TODO: check/ensure fontconfig is being used?
-      fonts.fontconfig.confPackages = [ powerlineSymbolsConf ];
+      fonts.fontconfig.confPackages = lib.mkAfter [ powerlineSymbolsConf ];
       fonts.fonts = [ powerlineSymbolsFont ];
     };
   }
