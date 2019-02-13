@@ -32,7 +32,7 @@ let
     '';
   };
 
-  fontNames = cfg.fonts ++ optionals cfg.enableDefaultFonts [
+  fontNames = optionals cfg.enableDefaultFonts [
     # default family's in 2.7's 10-powerline-symbols.conf
     "monospace"
     "Droid Sans Mono"
@@ -59,7 +59,7 @@ let
     "Meslo LG M DZ"
     "Meslo LG S"
     "Meslo LG S DZ"
-  ];
+  ] ++ cfg.fonts;
   powerlineSymbolsConf = mkPowerlineSymbolsConf fontNames;
 in
   {
