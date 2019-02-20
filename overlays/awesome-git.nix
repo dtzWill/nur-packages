@@ -3,8 +3,6 @@ self: super: {
   awesome = super.awesome.overrideAttrs (o: rec {
     pname = "awesome";
     name = "${pname}-${version}"; # override
-    # Wargarbl
-    buildInputs = [ super.awesome.lua ] ++ o.buildInputs;
     version = "2019-02-19";
     src = super.fetchFromGitHub {
       owner = "AwesomeWM";
