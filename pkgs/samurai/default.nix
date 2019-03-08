@@ -11,6 +11,8 @@ stdenv.mkDerivation rec {
     sha256 = "1m4yjkyjm278399hj02vs6nzpll1zxr72c62rhx08gsq755q3ncs";
   };
 
+  makeFlags = [ "DESTDIR=" "PREFIX=${placeholder "out"}" ];
+
   meta = with stdenv.lib; {
     description = "ninja-compatible build tool written in C";
     license = with licenses; [ mit asl20 ]; # see LICENSE
