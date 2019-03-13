@@ -15,6 +15,8 @@ let toplevel = {
 
     ccontrol = callPackage ./pkgs/ccontrol { };
 
+    chamferwm = callPackage ./pkgs/chamferwm { };
+
     chelf = callPackage ./pkgs/chelf { };
 
     crex = callPackage ./pkgs/crex { };
