@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
     sha256 = "1jhyr6brg3f71pz0qzkrpacrq08087gr6hi72m62wkm89ssnna6q";
   };
 
-
+  # to make use easier, use install locations as defaults for path args
   postPatch = ''
     substituteInPlace src/main.cpp \
       --replace $'{"config",\'c\'},"config.py");' \
@@ -58,6 +58,5 @@ stdenv.mkDerivation rec {
   postFixup = ''
     wrapProgram $out/bin/chamfer --set PYTHONPATH "${python3.pkgs.makePythonPath pypkgs}"
   '';
-    #patchPythonScript $out/share/chamfer/config/config.py
 }
 
