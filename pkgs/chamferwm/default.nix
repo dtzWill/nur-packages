@@ -7,6 +7,7 @@
 , vulkan-headers
 , vulkan-loader
 , shaderc
+, makeWrapper
 }:
 
 let
@@ -14,6 +15,7 @@ let
     url = https://raw.githubusercontent.com/Taywee/args/6cd243def4b335efa5a83acb4d29aee482970d2e/args.hxx;
     sha256 = "0lbhqjlii0q1jdwb7pd9annhrlsfarkmdx7zbfllw5wxqrsmj8nc";
   };
+  pypkgs =  [ boost ] ++ (with python3.pkgs; [ xlib psutil /* boost */ python ]);
 in
 stdenv.mkDerivation rec {
   pname = "chamferwm";
@@ -36,13 +38,12 @@ stdenv.mkDerivation rec {
     cp ${args_hxx} third/args/args.hxx
   '';
 
-  nativeBuildInputs = [ meson ninja pkgconfig shaderc ];
+  nativeBuildInputs = [ meson ninja pkgconfig shaderc makeWrapper ];
   buildInputs = [
     glm
     boost
     vulkan-headers vulkan-loader
-  ]
-  ++ (with python3.pkgs; [ xlib psutil /* boost */ python ])
+  ] ++ pypkgs
   ++ (with xorg; [ libxcb xcbutil xcbutilkeysyms xcbutilwm ]);
 
   # Default copies over the shaders, which is a start but.. ;)
@@ -53,5 +54,10 @@ stdenv.mkDerivation rec {
     install -Dm755 -t $out/share/chamfer/shaders *.spv
     install -Dm755 -t $out/share/chamfer/config ../config/*
   '';
+
+  postFixup = ''
+    wrapProgram $out/bin/chamfer --set PYTHONPATH "${python3.pkgs.makePythonPath pypkgs}"
+  '';
+    #patchPythonScript $out/share/chamfer/config/config.py
 }
 
