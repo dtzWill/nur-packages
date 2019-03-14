@@ -29,7 +29,9 @@ stdenv.mkDerivation rec {
   postPatch = ''
     substituteInPlace src/main.cpp \
       --replace 'pconfigLoader->Run(configPath.Get().c_str(),"config.py");' \
-                'pconfigLoader->Run(configPath.Get().c_str(),"${placeholder "out"}/share/chamfer/config/config.py");'
+                'pconfigLoader->Run(configPath.Get().c_str(),"${placeholder "out"}/share/chamfer/config/config.py");' \
+      --replace '{"shader-path"});' \
+                '{"shader-path"},"${placeholder "out"}/share/chamfer/shaders");'
 
     cp ${args_hxx} third/args/args.hxx
   '';
