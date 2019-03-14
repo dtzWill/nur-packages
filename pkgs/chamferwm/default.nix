@@ -19,12 +19,6 @@ stdenv.mkDerivation rec {
     sha256 = "1jhyr6brg3f71pz0qzkrpacrq08087gr6hi72m62wkm89ssnna6q";
   };
 
-  #postPatch = ''
-  #  substituteInPlace meson.build --replace \
-  #    "['system','filesystem','python3']" \
-  #    "['system','filesystem','libboost_${python3.libPrefix}']"
-  #'';
-
   nativeBuildInputs = [ meson ninja pkgconfig shaderc ];
   buildInputs = [
     glm
@@ -32,6 +26,6 @@ stdenv.mkDerivation rec {
     vulkan-headers vulkan-loader
   ]
   ++ (with python3.pkgs; [ xlib psutil /* boost */ python ])
-  ++ (with xorg; [ libxcb xcbutilkeysyms xcbutilwm ]);
+  ++ (with xorg; [ libxcb xcbutil xcbutilkeysyms xcbutilwm ]);
 }
 
