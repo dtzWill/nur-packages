@@ -15,7 +15,15 @@ let toplevel = {
 
     ccontrol = callPackage ./pkgs/ccontrol { };
 
-    chamferwm = callPackage ./pkgs/chamferwm { };
+    chamferwm = callPackage ./pkgs/chamferwm {
+      boost = (pkgs.boost166.override {
+        python = pkgs.python3;
+        enablePython = true;
+      }).overrideAttrs (oa: {
+        NIX_CFLAGS_COMPILE = (oa.NIX_CFLAGS_COMPILE or [])
+          ++ [ "-fpermissive" ];
+      });
+    };
 
     chelf = callPackage ./pkgs/chelf { };
 
