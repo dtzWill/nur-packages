@@ -9,6 +9,12 @@
 , shaderc
 }:
 
+let
+  args_hxx = builtins.fetchurl {
+    url = https://raw.githubusercontent.com/Taywee/args/6cd243def4b335efa5a83acb4d29aee482970d2e/args.hxx;
+    sha256 = "0lbhqjlii0q1jdwb7pd9annhrlsfarkmdx7zbfllw5wxqrsmj8nc";
+  };
+in
 stdenv.mkDerivation rec {
   pname = "chamferwm";
   version = "2019-03-13";
@@ -18,6 +24,15 @@ stdenv.mkDerivation rec {
     rev = "bff97eb0191e35ff2fc2367f8bfad148c27c6217";
     sha256 = "1jhyr6brg3f71pz0qzkrpacrq08087gr6hi72m62wkm89ssnna6q";
   };
+
+
+  postPatch = ''
+    substituteInPlace src/main.cpp \
+      --replace 'pconfigLoader->Run(configPath.Get().c_str(),"config.py");' \
+                'pconfigLoader->Run(configPath.Get().c_str(),"${placeholder "out"}/share/chamfer/config/config.py");'
+
+    cp ${args_hxx} third/args/args.hxx
+  '';
 
   nativeBuildInputs = [ meson ninja pkgconfig shaderc ];
   buildInputs = [
