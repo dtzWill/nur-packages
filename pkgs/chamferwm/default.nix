@@ -27,5 +27,14 @@ stdenv.mkDerivation rec {
   ]
   ++ (with python3.pkgs; [ xlib psutil /* boost */ python ])
   ++ (with xorg; [ libxcb xcbutil xcbutilkeysyms xcbutilwm ]);
+
+  # Default copies over the shaders, which is a start but.. ;)
+  # Based on upstream's linked PKGBUILD:
+  # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=chamfer-git
+  installPhase = ''
+    install -Dm755 -t $out/bin chamfer
+    install -Dm755 -t $out/share/chamfer/shaders *.spv
+    install -Dm755 -t $out/share/chamfer/config ../config/*
+  '';
 }
 
