@@ -5,6 +5,7 @@
 , fetchFromGitHub
 , checkWithOtherPTAs ? false # They don't pass tests but potentially interesting.
 , doCheck ? true
+, catch2
 }:
 
 let
@@ -34,6 +35,9 @@ stdenv.mkDerivation rec {
     substituteInPlace tests/test_assert.c \
       --replace 'assert(0 && "assertion failed");' \
                 'fflush(0); assert(0 && "assertion failed");'
+  '' + # update catch2 used
+  ''
+    cp ${catch2}/include/catch2/catch.hpp tests/catch.hpp
   '';
 
   cmakeFlags = [
