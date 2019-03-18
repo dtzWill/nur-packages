@@ -48,7 +48,7 @@ stdenv.mkDerivation rec {
   # Install other utilities as well
   postPatch = ''
     substituteInPlace tools/CMakeLists.txt \
-      --replace "install(TARGETS" "install(TARGETS llvm-ps-dump llvm-rd-dump llvm-to-source llvm-pta-compare"
+      --replace "install(TARGETS" "install(TARGETS llvm-ps-dump llvm-rd-dump llvm-to-source llvm-pta-compare llvm-vr-dump llvm-thread-regions-dump llvm-pta-ben"
   '' + # temporary kludge to workaround test that fails but seems like that's intended?
   ''
     substituteInPlace tests/CMakeLists.txt \
