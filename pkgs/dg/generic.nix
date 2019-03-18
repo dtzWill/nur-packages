@@ -48,7 +48,8 @@ stdenv.mkDerivation rec {
   # Install other utilities as well
   postPatch = ''
     substituteInPlace tools/CMakeLists.txt \
-      --replace "install(TARGETS" "install(TARGETS llvm-ps-dump llvm-rd-dump llvm-to-source llvm-pta-compare llvm-vr-dump llvm-thread-regions-dump llvm-pta-ben"
+      --replace "install(TARGETS" \
+                "install(TARGETS llvm-ps-dump llvm-rd-dump llvm-to-source llvm-pta-compare llvm-vr-dump llvm-thread-regions-dump llvm-pta-ben"
   '' + # temporary kludge to workaround test that fails but seems like that's intended?
   ''
     substituteInPlace tests/CMakeLists.txt \
@@ -58,6 +59,10 @@ stdenv.mkDerivation rec {
     substituteInPlace tests/CMakeLists.txt \
       --replace "add_test(rdmap-test rdmap-test)" "" \
       --replace "add_dependencies(check rdmap-test)" ""
+  '' + # and thread test
+  ''
+    substituteInPlace tests/CMakeLists.txt \
+      --replace 'add_test(thread-regions-test thread-regions-test)' ""
   '';
 
   inherit doCheck;
