@@ -25,8 +25,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "jaelpark";
     repo = pname;
-    rev = "9f7eec18b43cc181d8a7a96c3d3d92e1f9a0c989";
-    sha256 = "0briik6k3zhqi4iii3fi39kmvmj3cp60vxns4r6w7f307y9q8ik3";
+    rev = "6e5e0432f1122a0d58301e61f0f93092993cf62d";
+    sha256 = "0kyqahfci2lqlhh6hi621zz2ydd5k59pwhq57m8phdl02051z1sf";
   };
 
   # to make use easier, use install locations as defaults for path args
