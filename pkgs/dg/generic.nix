@@ -78,13 +78,13 @@ stdenv.mkDerivation rec {
     export hardeningDisable=all
 
     # Do default tests, ctest stuff but also other things
-    make check
+    make check ''${enableParallelChecking:+-j''${NIX_BUILD_CORES} -l''${NIX_BUILD_CORES}}
   '' + stdenv.lib.optionalString checkWithOtherPTAs ''
     # Try other pointer analysis variants
     for pta in fi fs old; do
       export DG_TESTS_PTA=$pta
       echo "Running tests with DG_TESTS_PTA=$DG_TESTS_PTA..."
-      make check
+      make check ''${enableParallelChecking:+-j''${NIX_BUILD_CORES} -l''${NIX_BUILD_CORES}}
     done
   '';
 
