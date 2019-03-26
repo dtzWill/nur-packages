@@ -7,8 +7,8 @@ self: super: {
     src = super.fetchFromGitHub {
       owner = "dtzWill"; # "AwesomeWM";
       repo = "awesome";
-      rev = "f2ed14dd2211d88406250d2ef250ed1cc3550e6b";
-      sha256 = "11flw2v67kjrbfhc0mixqkv9x9nip8z12hx6a2jkwcywvgz5i1r1";
+      rev = "04daf4596b5fe26c01010d0ed95361b13143506a";
+      sha256 = "1x7mbgd653ygg7axxw7p9qjivf7qq23zi4bd9is4ycbyr3zzxdr8";
     };
     buildInputs = (o.buildInputs or []) ++ [ self.xorg.xcbutilerrors ];
 
