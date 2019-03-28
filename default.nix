@@ -66,7 +66,6 @@ let toplevel = {
 
     iml = callPackage ./pkgs/iml { };
     patchelf-git = callPackage ./pkgs/patchelf { };
-    patchelf-dtz = callPackage ./pkgs/patchelf/dtz.nix { };
 
     samurai = callPackage ./pkgs/samurai { };
 
