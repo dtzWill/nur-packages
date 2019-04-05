@@ -1,4 +1,5 @@
 self: super: {
+/*
   tlp = super.tlp.overrideAttrs (o: rec {
     name = "tlp-${version}";
     #version = "2019-03-09";
@@ -17,4 +18,5 @@ self: super: {
       "TLP_FLIB=${placeholder "out"}/share/tlp-pm/func.d"
     ];
   });
+*/
 }
