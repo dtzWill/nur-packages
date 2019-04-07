@@ -29,6 +29,8 @@ let toplevel = {
 
     crex = callPackage ./pkgs/crex { };
 
+    dedupsqlfs = callPackage ./pkgs/dedupsqlfs { };
+
     diva = callPackage ./pkgs/diva { };
 
     dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
