@@ -20,4 +20,8 @@ python3.pkgs.buildPythonApplication rec {
 
 
   patches = [ ./install.patch ];
+
+  postInstall = ''
+    find $out -name "__pycache__" -type d -depth -exec rm -rf {} \;
+  '';
 }
