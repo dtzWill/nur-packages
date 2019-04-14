@@ -11,11 +11,5 @@ self: super: {
       #rev = version;
       sha256 = "01vs7z4ngqaqr725ii4ddz0rc9km24s6zcry6lhv0jyvpyqvzpd7";
     };
-
-    makeFlags = (o.makeFlags or []) ++ [
-      # not sure why we put things in share/tlp-pm vs default share/tlp
-      # but follow along for now.
-      "TLP_FLIB=${placeholder "out"}/share/tlp-pm/func.d"
-    ];
   });
 }
