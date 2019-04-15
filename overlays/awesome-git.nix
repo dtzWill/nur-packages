@@ -3,7 +3,7 @@ self: super: {
   awesome = super.awesome.overrideAttrs (o: rec {
     pname = "awesome";
     name = "${pname}-${version}"; # override
-    version = "2019-04-13"; # with new notification support, WIP
+    version = "2019-04-14"; # with new notification support, WIP
     src = super.fetchFromGitHub {
       owner = "AwesomeWM"; # "dtzWill";
       repo = "awesome";
