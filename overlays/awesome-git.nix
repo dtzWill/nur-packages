@@ -51,21 +51,6 @@ self: super: {
         -- 
         2.21.GIT
      '')
-     (builtins.toFile "notification-action-fix-dbus.patch" ''
-        diff --git a/lib/naughty/dbus.lua b/lib/naughty/dbus.lua
-        --- a/lib/naughty/dbus.lua        2019-04-06 21:36:17.191213289 +0200
-        +++ b/lib/naughty/dbus.lua     2019-04-06 21:38:13.551108079 +0200
-        @@ -214,6 +214,10 @@
-                             notification = nnotif(args)
-                         end
-        
-        +                for _, a in ipairs(args.actions) do
-        +                    a._private.notification = notification
-        +                end
-        +
-                         return "u", notification.id
-                     end
-     '')
    ];
 
     #doCheck = true;
