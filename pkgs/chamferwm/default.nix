@@ -21,12 +21,12 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "chamferwm";
-  version = "2019-03-18";
+  version = "2019-05-16";
   src = fetchFromGitHub {
     owner = "jaelpark";
     repo = pname;
-    rev = "6e5e0432f1122a0d58301e61f0f93092993cf62d";
-    sha256 = "0kyqahfci2lqlhh6hi621zz2ydd5k59pwhq57m8phdl02051z1sf";
+    rev = "91f3b07d54ebcd0c9f0154e842c31b27069e9057";
+    sha256 = "1b4m90nwxdcslkc5y5qhhj8jdyxz0jxhf0iy36alrwxb7p191lvy";
   };
 
   # to make use easier, use install locations as defaults for path args
