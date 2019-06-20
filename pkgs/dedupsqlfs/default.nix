@@ -2,13 +2,13 @@
 
 python3.pkgs.buildPythonApplication rec {
   pname = "dedupsqlfs";
-  version = "1.2.938pre";
+  version = "1.2.938";
 
   src = fetchFromGitHub {
     owner = "sergey-dryabzhinsky";
     repo = pname;
-    rev = "a1b04f3e36af9955e6cf68e48326066171d2efeb";
-    sha256 = "034gsr3xrg09slc6p1p1jdsn6mjmyfs4l5lff0385iq6cjih74ib";
+    rev = "v${version}";
+    sha256 = "1sjq5ilrfp4jhjqlpyl5wmnw3zswd3a3mc86wcs6vc2lbi41q997";
   };
 
   doCheck = false; # revisit
