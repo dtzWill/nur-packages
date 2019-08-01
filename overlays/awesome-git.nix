@@ -11,7 +11,7 @@ self: super: {
       sha256 = "0njabdz0fycpnlhk5nhb7xx9v4d8r5srfaq12cyw9z1ki974p81w";
     };
     buildInputs = (o.buildInputs or []) ++ [ self.xorg.xcbutilerrors ];
-    patches = (o.patches or []) ++ [
+    patches = (o.patches or []) ++ super.lib.optional false
      (builtins.toFile "notification-action-fix.patch" ''
         From 007af75353484cbefe7611db07615fd0771757ac Mon Sep 17 00:00:00 2001
         From: Will Dietz <w@wdtz.org>
@@ -51,7 +51,12 @@ self: super: {
         -- 
         2.21.GIT
      '')
-   ];
+     ++ super.lib.optional true
+     (super.fetchpatch {
+       url = "https://github.com/awesomeWM/awesome/pull/2825.patch";
+       sha256 = "0wvafb15wi2spcqm9k8wp29da9w5q9wamnhdmn58v6kgvs4zy3w2";
+     })
+     ;
 
     #doCheck = true;
   });
