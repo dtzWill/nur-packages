@@ -3,12 +3,12 @@ self: super: {
   awesome = super.awesome.overrideAttrs (o: rec {
     pname = "awesome";
     name = "${pname}-${version}"; # override
-    version = "2019-07-24";
+    version = "2019-08-06";
     src = super.fetchFromGitHub {
       owner = "AwesomeWM"; # "dtzWill";
       repo = "awesome";
-      rev = "b475c23fd38dc28048bfa979528fd63f512f32e3";
-      sha256 = "0njabdz0fycpnlhk5nhb7xx9v4d8r5srfaq12cyw9z1ki974p81w";
+      rev = "c4c97174e66b07132bc66ff94a2e9be5eb041af0";
+      sha256 = "1lkq3zjbarpzp1d0pil1nakclvzcl312jhz2hhsnjk17l8j4hr1q";
     };
     buildInputs = (o.buildInputs or []) ++ [ self.xorg.xcbutilerrors ];
     patches = (o.patches or []) ++ super.lib.optional false
@@ -54,7 +54,7 @@ self: super: {
      ++ super.lib.optional true
      (super.fetchpatch {
        url = "https://github.com/awesomeWM/awesome/pull/2825.patch";
-       sha256 = "0wvafb15wi2spcqm9k8wp29da9w5q9wamnhdmn58v6kgvs4zy3w2";
+       sha256 = "0gvs83a515vzsdxkcwpc5q8yv3pvs8ddkn6xv0wm4k4wkqy4c90f";
      })
      ;
 
