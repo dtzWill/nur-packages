@@ -14,6 +14,10 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake pkgconfig makeWrapper ];
   buildInputs = [ elfutils boost tbb ];
 
+  # TODO:
+  # - patch dyninstAPI/src/linux.C
+  #   - add NixOS locations to libPaths, consider using NixOS paths only for purity
+  #   - workaround/remove `/sbin/ldconfig -p`
   postPatch = ''
     patchShebangs ./scripts
   '';
