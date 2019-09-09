@@ -20,7 +20,10 @@ stdenv.mkDerivation rec {
 
   postInstall = ''
     for x in $out/bin/*; do
-      wrapProgram $out/bin --set DYNINSTAPI_RT_LIB ${placeholder "out"}/lib/libdyninstAPI_RT.so
+      # skip the *.db files
+      [[ "$x" =~ .db$ ]] && continue
+
+      wrapProgram $x --set DYNINSTAPI_RT_LIB ${placeholder "out"}/lib/libdyninstAPI_RT.so
     done
   '';
 
