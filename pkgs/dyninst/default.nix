@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, pkgconfig, makeWrapper, elfutils, boost, tbb }:
+{ stdenv, fetchFromGitHub, cmake, pkgconfig, makeWrapper, elfutils, boost, tbb, coreutils }:
 
 stdenv.mkDerivation rec {
   pname = "dyninst";
@@ -16,10 +16,11 @@ stdenv.mkDerivation rec {
 
   # TODO:
   # - patch dyninstAPI/src/linux.C
-  #   - add NixOS locations to libPaths, consider using NixOS paths only for purity
-  #   - workaround/remove `/sbin/ldconfig -p`
+  #   - [ ] add NixOS locations to libPaths, consider using NixOS paths only for purity
   postPatch = ''
     patchShebangs ./scripts
+
+    substituteInPlace dyninstAPI/src/linux.C --replace /sbin/ldconfig ${coreutils}/bin/true
   '';
 
   postInstall = ''
