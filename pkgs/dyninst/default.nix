@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, cmake, pkgconfig, elfutils, boost, tbb }:
+{ stdenv, fetchFromGitHub, cmake, pkgconfig, makeWrapper, elfutils, boost, tbb }:
 
 stdenv.mkDerivation rec {
   pname = "dyninst";
@@ -11,11 +11,17 @@ stdenv.mkDerivation rec {
     sha256 = "02263f59wpvgwkjrhrvrkjz4rdv3p6yj9j7ja5l5az2j153vaqzd";
   };
 
-  nativeBuildInputs = [ cmake pkgconfig ];
+  nativeBuildInputs = [ cmake pkgconfig makeWrapper ];
   buildInputs = [ elfutils boost tbb ];
 
   postPatch = ''
     patchShebangs ./scripts
+  '';
+
+  postInstall = ''
+    for x in $out/bin/*; do
+      wrapProgram $out/bin --set DYNINSTAPI_RT_LIB ${placeholder "out"}/lib/libdyninstAPI_RT.so
+    done
   '';
 
   meta = with stdenv.lib; {
