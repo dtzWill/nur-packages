@@ -1,4 +1,4 @@
-{ pkgs, lib, fetchFromGitHub, makeRustPlatform, sassc, glib, gtk3, notmuch, libsoup, gmime3, webkitgtk }:
+{ pkgs, lib, fetchFromGitHub, makeRustPlatform, sassc, glib, gtk3, notmuch, libsoup, gmime3, webkitgtk, capnproto }:
 
 # :(
 let
@@ -26,7 +26,7 @@ in rustPlatform.buildRustPackage rec {
     sha256 = "09h1wq346r9fyx984g45hfaz4bnwa41yam718v3dm8wxaig3cvws";
   };
 
-  buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk ];
+  buildInputs = [ sassc glib gtk3 notmuch libsoup gmime3 webkitgtk capnproto ];
 
   cargoSha256 = "0j97p3nd8chqs7w8068kgii2skjid7690r03gd3bx1l3v81ynqwz";
 
