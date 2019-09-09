@@ -17,4 +17,11 @@ stdenv.mkDerivation rec {
   postPatch = ''
     patchShebangs ./scripts
   '';
+
+  meta = with stdenv.lib; {
+    description = "Tools for binary instrumentation, analysis, and modification";
+    license = licenses.lgpl21Plus;
+    homepage = "https://dyninst.org/dyninst";
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
