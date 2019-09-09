@@ -33,6 +33,8 @@ let toplevel = {
 
     diva = callPackage ./pkgs/diva { };
 
+    dyninst = callPackage ./pkgs/dyninst { };
+
     dwarf-type-reader = callPackage ./pkgs/dwarf-type-reader {
       inherit (pkgs.llvmPackages_5) llvm;
     };
