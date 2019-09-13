@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub
+{ stdenv, fetchFromGitHub, fetchurl
 , meson, ninja, pkgconfig
 , xorg
 , glm
@@ -11,7 +11,7 @@
 }:
 
 let
-  args_hxx = builtins.fetchurl {
+  args_hxx = fetchurl {
     url = https://raw.githubusercontent.com/Taywee/args/6cd243def4b335efa5a83acb4d29aee482970d2e/args.hxx;
     sha256 = "0lbhqjlii0q1jdwb7pd9annhrlsfarkmdx7zbfllw5wxqrsmj8nc";
   };
