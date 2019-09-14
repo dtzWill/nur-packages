@@ -12,6 +12,21 @@ self: super: {
     };
     buildInputs = (o.buildInputs or []) ++ [ self.xorg.xcbutilerrors ];
 
-    #doCheck = true;
+    postPatch = (o.postPatch or "") + ''
+      patchShebangs tests/run.sh
+      patchShebangs utils/awesome-client
+      substituteInPlace tests/run.sh --replace "dbus-launch" "dbus-launch --config-file=${self.dbus.daemon}/share/dbus-1/session.conf"
+    '';
+    checkInputs = (o.checkinputs or []) ++ [
+      self.xorg.xorgserver /* Xephyr or Xvfb */
+      self.dbus
+      self.xorg.xrdb
+      self.ncurses /* tput */
+    ];
+    preCheck = (o.preCheck or "") + ''
+      export HEADLESS=1
+      export TEST_PAUSE_ON_ERRORS=0
+    '';
+    doCheck = true;
   });
 }
