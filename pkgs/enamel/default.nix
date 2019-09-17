@@ -35,7 +35,8 @@ in rustPlatform.buildRustPackage rec {
 
   # doCheck = false;
 
-  preCheck = ''
+  # preCheck, but build runs tests apparently?
+  preBuild = ''
     export NOTMUCH_CONFIG="$PWD/notmuch-config"
   '';
 
