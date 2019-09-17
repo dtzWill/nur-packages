@@ -35,6 +35,10 @@ in rustPlatform.buildRustPackage rec {
 
   # doCheck = false;
 
+  preCheck = ''
+    export NOTMUCH_CONFIG="$PWD/notmuch-config"
+  '';
+
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
     license = licenses.gpl3;
