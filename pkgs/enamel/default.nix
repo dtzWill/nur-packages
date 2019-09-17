@@ -30,15 +30,10 @@ in rustPlatform.buildRustPackage rec {
 
   cargoSha256 = "1y9l31mncm9m99msfj55wxglprp7y74dlpbfw2nixkn69gfm3rpn";
 
-  cargoPatches = [ ./cargo-lock.patch ];
+  cargoPatches = [ ./cargo-lock.patch ./no-test.patch ];
   # cargoBuildFlags = [ "-p" "enamel-tui" ];
 
   # doCheck = false;
-
-  # preCheck, but build runs tests apparently?
-  preBuild = ''
-    export NOTMUCH_CONFIG="$PWD/notmuch-config"
-  '';
 
   meta = with lib; {
     maintainers = with maintainers; [ dtzWill ];
