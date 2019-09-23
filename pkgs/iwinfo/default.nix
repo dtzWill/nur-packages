@@ -21,6 +21,7 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     substituteInPlace Makefile --replace -lnl-tiny "-lnl-3 -lnl-genl-3"
+    substituteInPlace include/iwinfo.h --replace /usr/share $out/share
   '';
 
   installPhase = ''
