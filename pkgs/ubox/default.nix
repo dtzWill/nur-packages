@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, cmake, json_c, uci }:
+{ stdenv, fetchgit, cmake, json_c, ubus, uci, libubox }:
 
 stdenv.mkDerivation rec {
   pname = "ubox";
@@ -12,6 +12,6 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ];
 
-  buildInputs = [ json_c uci ];
+  buildInputs = [ json_c ubus uci libubox ];
 }
 
