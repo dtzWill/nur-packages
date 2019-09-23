@@ -69,6 +69,9 @@ let toplevel = {
     htop3beta = callPackage ./pkgs/htop/3.nix { inherit (pkgs.darwin) IOKit; };
 
     iml = callPackage ./pkgs/iml { };
+
+    iwinfo = callPackage ./pkgs/iwinfo { };
+
     patchelf-git = callPackage ./pkgs/patchelf { };
 
     samurai = callPackage ./pkgs/samurai { };
@@ -136,6 +139,7 @@ let toplevel = {
 
     libubox = callPackage ./pkgs/libubox { };
     ubox = callPackage ./pkgs/ubox { };
+    ubus = callPackage ./pkgs/ubus { };
     uci = callPackage ./pkgs/uci { };
 
     vmir = callPackage ./pkgs/vmir { };
