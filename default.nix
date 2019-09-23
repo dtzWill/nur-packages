@@ -76,6 +76,8 @@ let toplevel = {
       inherit (pkgs.llvmPackages_4) llvm clang;
     };
 
+    nlmon = callPackage ./pkgs/nlmon { };
+
     nltrace = callPackage ./pkgs/nltrace { };
 
     patchelf-git = callPackage ./pkgs/patchelf { };
