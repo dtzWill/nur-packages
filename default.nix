@@ -134,6 +134,10 @@ let toplevel = {
 
     toybox = callPackage ./pkgs/toybox { };
 
+    libubox = callPackage ./pkgs/libubox { };
+    ubox = callPackage ./pkgs/ubox { };
+    uci = callPackage ./pkgs/uci { };
+
     vmir = callPackage ./pkgs/vmir { };
     vmir-clang4 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_4) stdenv; };
     vmir-clang5 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_5) stdenv; };
