@@ -46,6 +46,8 @@ let toplevel = {
     fcd4 = callPackage ./pkgs/fcd/4.nix { };
     fcd4-tests = callPackage ./pkgs/fcd/test.nix { fcd = fcd4; };
 
+    focal = callPackage ./pkgs/focal { };
+
     htop3beta = callPackage ./pkgs/htop/3.nix { inherit (pkgs.darwin) IOKit; };
 
     iml = callPackage ./pkgs/iml { };
