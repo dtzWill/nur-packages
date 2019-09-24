@@ -155,6 +155,8 @@ let toplevel = {
     vmir-clang5 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_5) stdenv; };
     vmir-clang6 = callPackage ./pkgs/vmir { inherit (pkgs.llvmPackages_6) stdenv; };
 
+    wtplan = callPackage ./pkgs/wtplan { };
+
     ycomp = callPackage ./pkgs/ycomp { };
 
     # XXX: scoping
