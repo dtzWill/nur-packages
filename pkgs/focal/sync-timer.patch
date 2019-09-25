@@ -1,0 +1,83 @@
+From 9fc3da423f66e006fad69e909e20ba59ef33c9ec Mon Sep 17 00:00:00 2001
+From: Will Dietz <w@wdtz.org>
+Date: Tue, 24 Sep 2019 20:55:14 -0500
+Subject: [PATCH] invoke sync every 120s, glib
+
+---
+ CMakeLists.txt |  7 ++++++-
+ src/main.c     | 13 +++++++++++++
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1436ec1..4acf98e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -31,7 +31,7 @@ add_definitions(${LIBXML2_DEFINITIONS})
+ # cURL
+ find_package(CURL REQUIRED)
+ include_directories(${CURL_INCLUDE_DIRS})
+-add_definitions(${LIBXML2_DEFINITIONS})
++add_definitions(${CURL_DEFINITIONS})
+ 
+ # libical
+ pkg_check_modules(ICAL REQUIRED libical)
+@@ -41,6 +41,10 @@ include_directories(${ICAL_INCLUDE_DIRS})
+ pkg_check_modules(LIBSECRET REQUIRED libsecret-1)
+ include_directories(${LIBSECRET_INCLUDE_DIRS})
+ 
++# glib
++pkg_check_modules(GLIB REQUIRED glib-2.0)
++include_directories(${GLIB_INCLUDE_DIRS})
++
+ # json-glib
+ pkg_check_modules(JSONGLIB REQUIRED json-glib-1.0)
+ include_directories(${JSONGLIB_INCLUDE_DIRS})
+@@ -88,6 +92,7 @@ target_link_libraries(${PROJECT_NAME}
+ 	${ICAL_LIBRARIES}
+ 	${LIBSECRET_LIBRARIES}
+ 	${JSONGLIB_LIBRARIES}
++	${GLIB_LIBRARIES}
+ )
+ 
+ install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
+diff --git a/src/main.c b/src/main.c
+index 8982f7f..adb258b 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -21,6 +21,7 @@
+ #include "week-view.h"
+ 
+ #include <curl/curl.h>
++#include <glib/gmain.h>
+ #include <gtk/gtk.h>
+ #include <libical/ical.h>
+ #include <string.h>
+@@ -280,6 +281,11 @@ static void workaround_sync_event_detail_with_week_view(GtkWidget* event_panel,
+ 	gtk_widget_set_size_request(event_panel, allocation->width, allocation->height);
+ }
+ 
++static gboolean sync_func(gpointer userdata)
++{
++	do_calendar_sync((FocalApp*)userdata);
++}
++
+ static void focal_create_main_window(GApplication* app, FocalApp* fm)
+ {
+ 	fm->mainWindow = gtk_application_window_new(GTK_APPLICATION(app));
+@@ -357,6 +363,13 @@ static void focal_create_main_window(GApplication* app, FocalApp* fm)
+ 	gtk_widget_show_all(fm->mainWindow);
+ 
+ 	app_header_set_event(FOCAL_APP_HEADER(fm->header), NULL);
++
++  g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE,
++      120 /* sync interval, seconds */,
++			G_SOURCE_FUNC(sync_func),
++			fm,
++			NULL /* finalize */);
++
+ }
+ 
+ static void load_preferences(const char* filename, FocalPrefs* out)
+-- 
+2.23.GIT
+
