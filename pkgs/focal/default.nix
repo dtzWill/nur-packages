@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
     sha256 = "0yiqvg8wfvw2x7k36zaz92qpc8kvpjr3n7v64vik9ibhnhdfzqrv";
   };
 
+  patches = [ ./dont-crash-if-calendar-has-vtodos-not-just-vevents.patch ];
+
   nativeBuildInputs = [ wrapGAppsHook cmake pkgconfig ];
   buildInputs = [
     gtk3 libxml2 curl libsecret json-glib gperf libical
