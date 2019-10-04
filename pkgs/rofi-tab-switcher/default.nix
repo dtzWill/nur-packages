@@ -37,7 +37,8 @@ let
   };
 
   plugin = runCommand "rofi-tab-switcher" {} ''
-    install -DT $out/lib/mozilla/native-messaging-hosts/rofi_interface.json \
-      ${writeText "rofi_interface.json" (builtins.toJSON manifest)}
+    install -DT \
+      ${writeText "rofi_interface.json" (builtins.toJSON manifest)} \
+      $out/lib/mozilla/native-messaging-hosts/rofi_interface.json
   '';
 in { inherit native_helper plugin; }
