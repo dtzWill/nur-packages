@@ -34,6 +34,7 @@ let
     # XXX: Maybe put into libexec instead, since not meant for PATH
     installPhase = ''
       install -Dm755 -t $out/bin rofiface.py
+      patchShebangs $out/bin/rofiface.py
     '';
   };
 
