@@ -13,13 +13,12 @@ let
     pname = "rofi-tab-switcher";
     version = "unstable-2019-09-07";
 
-    src = fetchGit /home/will/src/misc/rofi-tab-switcher;
-    #src = fetchFromGitHub {
-    #  owner = "blackhole89";
-    #  repo = pname;
-    #  rev = "92fbd93114a9058d6ae7c7cd339e299fd6c6d0b9";
-    #  sha256 = "19lh4jgqc3lmakwnqknsac1iq2dg8f5i8xl783vfm5aw57gvp48c";
-    #};
+    src = fetchFromGitHub {
+      owner = "blackhole89";
+      repo = pname;
+      rev = "92fbd93114a9058d6ae7c7cd339e299fd6c6d0b9";
+      sha256 = "19lh4jgqc3lmakwnqknsac1iq2dg8f5i8xl783vfm5aw57gvp48c";
+    };
 
     buildInputs = [ python3 ];
 
