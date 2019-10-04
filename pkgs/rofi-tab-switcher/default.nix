@@ -7,7 +7,7 @@ let
     description = "Native backend for rofi tab switcher.";
     type = "stdio";
     allowed_extensions = [ "@rofi.tab.switcher" ];
-    path = "${native_helper}/bin/rofiface.py";
+    path = "${native_helper}/bin/rofiface";
   };
   native_helper = stdenv.mkDerivation rec {
     pname = "rofi-tab-switcher";
@@ -33,8 +33,8 @@ let
 
     # XXX: Maybe put into libexec instead, since not meant for PATH
     installPhase = ''
-      install -Dm755 -t $out/bin rofiface.py
-      patchShebangs $out/bin/rofiface.py
+      install -Dm755 rofiface.py $out/bin/rofiface
+      patchShebangs $out/bin/rofiface
     '';
   };
 
