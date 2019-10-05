@@ -24,6 +24,8 @@ let
 
     dontBuild = true;
 
+    patches = [ ./fix.patch ];
+
     postPatch = ''
       substituteInPlace rofiface.py \
       --replace 'Popen("rofi ' \
