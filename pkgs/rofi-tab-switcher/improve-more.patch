@@ -1,4 +1,4 @@
-From 03e6806aa67531f3f796cec5393faae8e159ba76 Mon Sep 17 00:00:00 2001
+From 27bf99d79d79da786148e7b0771cf6d87a45ac32 Mon Sep 17 00:00:00 2001
 From: Will Dietz <w@wdtz.org>
 Date: Fri, 4 Oct 2019 22:12:19 -0500
 Subject: [PATCH] rofiface: sync w/mdn example, improve handling of no
@@ -9,7 +9,7 @@ Subject: [PATCH] rofiface: sync w/mdn example, improve handling of no
  1 file changed, 28 insertions(+), 24 deletions(-)
 
 diff --git a/rofiface.py b/rofiface.py
-index 0bfde6d..7637c63 100755
+index 0bfde6d..d885c73 100755
 --- a/rofiface.py
 +++ b/rofiface.py
 @@ -8,31 +8,27 @@ import subprocess
@@ -84,7 +84,7 @@ index 0bfde6d..7637c63 100755
 +      # sys.exit(0)
 +      continue
  
-+    selected_tab_id = messages['tabs'][selected]['id']
++    selected_tab_id = message['tabs'][selected]['id']
 +    sendMessage(encodeMessage(selected_tab_id))
  
 -- 
