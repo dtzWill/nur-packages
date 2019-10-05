@@ -24,7 +24,10 @@ let
 
     dontBuild = true;
 
-    patches = [ ./fix.patch ];
+    patches = [
+      ./fix.patch
+      ./improve-more.patch-
+    ];
 
     postPatch = ''
       substituteInPlace rofiface.py \
