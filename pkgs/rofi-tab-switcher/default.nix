@@ -26,7 +26,7 @@ let
 
     patches = [
       ./fix.patch
-      ./improve-more.patch-
+      ./improve-more.patch
     ];
 
     postPatch = ''
