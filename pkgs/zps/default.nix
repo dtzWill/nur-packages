@@ -12,6 +12,8 @@ let
         # from https://cmake.org/files/v3.15/cmake-3.15.4-SHA-256.txt
         sha256 = "8a211589ea21374e49b25fc1fc170e2d5c7462b795f1b29c84dd0e984301ed7a";
       };
+
+      # XXX: use patches used by provided cmake, should work if ~3.14+
     })
     else cmake;
 in
