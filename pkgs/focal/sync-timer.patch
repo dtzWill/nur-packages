@@ -61,8 +61,7 @@ index 8982f7f..a35192f 100644
  {
  	// set defaults
  	out->week_start_day = 0; // Sunday
--	out->week_end_day = 6;   // Saturday
-+	out->week_end_day = 6;	 // Saturday
+ 	out->week_end_day = 6;   // Saturday
  
  	GKeyFile* kf = g_key_file_new();
  	GError* err = NULL;
