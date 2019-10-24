@@ -16,7 +16,6 @@ stdenv.mkDerivation rec {
     ./dont-crash-if-calendar-has-vtodos-not-just-vevents.patch
     ./sync-timer.patch
     ./localtime.patch
-    ./alarm-actions.patch
   ];
 
   nativeBuildInputs = [ wrapGAppsHook cmake pkgconfig ];
