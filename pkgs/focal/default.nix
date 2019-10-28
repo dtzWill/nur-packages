@@ -22,7 +22,6 @@ stdenv.mkDerivation rec {
     ./app-header-tooltips.patch
     ./event-popup-tooltips.patch
 
-    ./debug.patch
     ./add-action.patch
     ./new-events-get-actions.patch
   ];
