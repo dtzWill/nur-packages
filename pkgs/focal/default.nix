@@ -14,6 +14,10 @@ stdenv.mkDerivation rec {
 
   patches = [
     ./localtime.patch
+
+    ./0001-caldav-Handle-gracefully-components-containing-no-VE.patch
+    ./0002-minor-style-tweaks.patch
+    ./0003-caldav-calendar-fix-leak-of-comp-in-parse-failure.patch
   ];
 
   nativeBuildInputs = [ wrapGAppsHook cmake pkgconfig ];
