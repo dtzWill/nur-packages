@@ -14,6 +14,13 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake ];
 
   # Install the main executable, at least
+  # TODO: install run_gen.py and its supporting cast of files and deps.
+  # https://github.com/intel/yarpgen/blob/master/run_gen.py
+  #
+  # - [ ] Patchup py3 usage with suitable packages available
+  # - [ ] substitute paths to runtime deps such as creduce (!)
+  # - [ ] investigate role of "Software Development Emulator" mentioned in README.md
+  #
   installPhase = ''
     install -Dm755 -t $out/bin ${pname}
   '';
@@ -21,6 +28,7 @@ stdenv.mkDerivation rec {
   meta = with stdenv.lib; {
     description = "Yet Another Random Program Generator";
     license = licenses.asl20;
+    homepage = "https://github.com/intel/yarpgen";
     maintainers = with maintainers; [ dtzWill ];
   };
 }
