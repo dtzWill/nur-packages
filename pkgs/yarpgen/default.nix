@@ -17,4 +17,10 @@ stdenv.mkDerivation rec {
   installPhase = ''
     install -Dm755 -t $out/bin ${pname}
   '';
+
+  meta = with stdenv.lib; {
+    description = "Yet Another Random Program Generator";
+    license = licenses.asl20;
+    maintainers = with maintainers; [ dtzWill ];
+  };
 }
