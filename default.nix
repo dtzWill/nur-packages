@@ -66,16 +66,16 @@ let toplevel = {
       ocamlPackages = pkgs.ocaml-ng.ocamlPackages_4_03;
     };
     libebc = callPackage ./pkgs/libebc {
-      inherit (pkgs.llvmPackages_4) llvm;
+      inherit (pkgs.llvmPackages_5) llvm;
     };
     llvm2kittel = callPackage ./pkgs/llvm2kittel {
-      inherit (pkgs.llvmPackages_4) llvm;
+      inherit (pkgs.llvmPackages_5) llvm;
     };
 
     llvm-dbas = callPackage ./pkgs/llvm-dbas { llvm = pkgs.llvm_4; };
 
     llstrata = callPackage ./pkgs/llstrata {
-      inherit (pkgs.llvmPackages_4) llvm clang;
+      inherit (pkgs.llvmPackages_5) llvm clang;
     };
 
     notify-send-sh = callPackage ./pkgs/notify-send.sh { };
