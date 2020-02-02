@@ -27,5 +27,8 @@ in
       "vmir-clang4"
       "svfPkgs_4"
       "dg_4"
+
+      # broken
+      "llstrata"
     ];
   }
