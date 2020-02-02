@@ -1,9 +1,8 @@
-{ stdenv, buildGoPackage, fetchFromGitHub }:
+{ stdenv, buildGoModule, fetchFromGitHub }:
 
-buildGoPackage rec {
-  name = "yubikey-touch-detector-${version}";
-  version = "1.2.0";
-  rev = "9c160b4a7d5761c518af5d1eaa4a671aa449e773";
+buildGoModule rec {
+  pname = "yubikey-touch-detector";
+  version = "1.4.1";
 
   goPackagePath = "github.com/maximbaz/yubikey-touch-detector";
 
@@ -11,10 +10,10 @@ buildGoPackage rec {
     owner = "maximbaz";
     repo = "yubikey-touch-detector";
     rev = version;
-    sha256 = "1zifmmadpiamwkgw72dg8s0fcchwga7d3hmywiahha45smbm0zd7";
+    sha256 = "1h2shjf0vahlz3xb9144i2azrz5g7n1iw6a7nhim3w3r8m12wnsv";
   };
 
-  goDeps = ./deps.nix;
+  modSha256 = "126w3wda3655x1avnlcv2bpq0zvalcbvz66080nidwd6fk572zs6";
 
   meta = with stdenv.lib; {
     description = "Detect when your YubiKey is waiting for a touch";
