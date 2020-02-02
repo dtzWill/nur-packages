@@ -27,6 +27,8 @@ in
       "vmir-clang4"
       "svfPkgs_4"
       "dg_4"
+      "llvm2kittel"
+      "libebc"
 
       # broken
       "llstrata"
