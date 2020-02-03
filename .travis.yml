@@ -3,7 +3,6 @@ nix: 2.3.2
 
 before_install:
   - ./ci/configure-nix.sh
-  - ./ci/install-new-nix.sh
   - ./ci/install-cachix.sh
   - ./ci/launch-cachix.sh
 
