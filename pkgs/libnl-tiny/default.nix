@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [ cmake ];
 
   meta = with lib; {
-    description = "Stripped down version of libnl";
+    description = "Stripped-down version of libnl";
     homepage = "https://git.openwrt.org/?p=project/libnl-tiny.git;a=summary";
     license = licenses.lgpl21;
     maintainers = with maintainers; [ dtzWill ];
