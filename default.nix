@@ -59,8 +59,9 @@ in let toplevel = {
 
     iml = callPackage ./pkgs/iml { };
 
-    iwinfo = callPackage ./pkgs/iwinfo { };
-
+    iwinfo-libnl = callPackage ./pkgs/iwinfo { withTiny = false; };
+    iwinfo-tiny = callPackage ./pkgs/iwinfo { withTiny = true; };
+    iwinfo = iwinfo-tiny;
 
     intelxed = callPackage ./pkgs/xed { };
     mbuild = callPackage ./pkgs/xed/mbuild.nix { };
