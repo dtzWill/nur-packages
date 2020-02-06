@@ -85,6 +85,8 @@ in let toplevel = {
 
     notify-send-sh = callPackage ./pkgs/notify-send.sh { };
 
+    libnl-tiny = callPackage ./pkgs/libnl-tiny { };
+
     nlmon = callPackage ./pkgs/nlmon { };
 
     nltrace = callPackage ./pkgs/nltrace { };
