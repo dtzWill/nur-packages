@@ -12,6 +12,10 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ];
 
+  postInstall = ''
+    install -Dt $out/lib/pkgconfig *.pc
+  '';
+
   meta = with lib; {
     description = "Stripped-down version of libnl";
     homepage = "https://git.openwrt.org/?p=project/libnl-tiny.git;a=summary";
