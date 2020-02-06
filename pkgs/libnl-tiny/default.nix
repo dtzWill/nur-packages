@@ -12,6 +12,8 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ];
 
+  patches = [ ./use-cmake-install-full-dirs.patch ];
+
   postInstall = ''
     install -Dt $out/lib/pkgconfig *.pc
   '';
