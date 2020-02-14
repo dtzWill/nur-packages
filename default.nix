@@ -1,9 +1,9 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> {}, withOldies ? false }:
 
 let
   # Lazy eval, but defined here so eval'd at most once
-  pkgs1909 = import (fetchTarball channel:nixos-19.09) {};
-  pkgs1609 = import (fetchTarball channel:nixos-16.09) {};
+  pkgs1909 = if withOldies then import (fetchTarball channel:nixos-19.09) {} else throw "oldies disabled, can't fetch 19.09";
+  pkgs1609 = if withOldies then import (fetchTarball channel:nixos-16.09) {} else throw "oldies disabled, can't fetch 16.09";
 in let toplevel = {
   lib = import ./lib;
   modules = toplevel.lib.pathDirectory ./modules;
