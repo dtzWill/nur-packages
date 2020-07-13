@@ -34,9 +34,6 @@ let
             substituteInPlace setup.py --replace "'dbus-python'," ""
         '';
 
-        # Fails loading hidapi libs? :(
-        doCheck = false;
-
         propagatedBuildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 ];
       });
     };

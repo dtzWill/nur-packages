@@ -12,8 +12,11 @@ buildPythonPackage rec {
   propagatedBuildInputs = [ hidapi ];
   checkInputs = [ nose ];
 
-  # Fails loading hidapi libs? :(
-  doCheck = false;
+  postPatch = ''
+    substituteInPlace hid/__init__.py \
+      --replace "LoadLibrary(lib)" \
+                "LoadLibrary('${lib.getLib hidapi}/lib/' + lib)"
+  '';
 
   meta = with lib; {
     homepage = "https://pypi.org/project/hid/";
