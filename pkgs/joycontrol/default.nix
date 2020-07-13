@@ -65,7 +65,7 @@ stdenv.mkDerivation (common // {
   installPhase = ''
     runHook preInstall
 
-    install -Dm755 -t $out/bin run_controller_cli.py
+    install -Dm755 -t $out/bin run_controller_cli.py scripts/*.py
 
     runHook postInstall
   '';
