@@ -10,7 +10,7 @@ let
     };
   };
 in
-py3.pkgs.buildPythonApplication rec {
+py3.pkgs.buildPythonPackage rec {
   pname = "joycontrol";
   version = "unstable-2020-07-11";
 
@@ -20,6 +20,12 @@ py3.pkgs.buildPythonApplication rec {
     rev = "e83dc5964b321daf9f02fea155f1dfdf394aec8b";
     sha256 = "0s2aknsssafk7riyzp71iblb7rq7myyg1aq51jc5jfdqkd3ljrnb";
   };
+
+  # dbus-python is correctly passed in propagatedBuildInputs, but for some reason setup.py complains.
+  # The wrapped terminator has the correct path added, so ignore this.
+  postPatch = ''
+      substituteInPlace setup.py --replace "'dbus-python'," ""
+  '';
 
   buildInputs = with py3.pkgs; [ hidapi aioconsole dbus-python crc8 ];
 }
