@@ -36,7 +36,7 @@ let
           ''
           # hciconfig
           + ''
-            substituteInPlace joytool/device.py --replace \
+            substituteInPlace joycontrol/device.py --replace \
               "run_system_command(f'hciconfig" \
               "run_system_command(f'${bluez_with_hciconfig}/bin/hciconfig"
           '';
