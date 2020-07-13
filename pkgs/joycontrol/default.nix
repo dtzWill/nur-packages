@@ -1,5 +1,8 @@
 { stdenv, python3Full, fetchFromGitHub, lib, hidapi, bluez, fetchpatch }:
 
+# XXX: Note: This requires python3 w/bluetooth support, not presently avail in nixpkgs master.
+# See PR91281.
+
 let
   common = rec {
     pname = "joycontrol";
