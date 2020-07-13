@@ -1,4 +1,4 @@
-{ python3, fetchFromGitHub, lib }:
+{ python3, fetchFromGitHub, lib, hidapi }:
 
 let
   py3 = python3.override {
@@ -6,6 +6,14 @@ let
       crc8 = import ./py-crc8.nix {
         inherit (super) fetchPypi buildPythonPackage;
         inherit lib;
+      };
+      hid = import ./py-hid.nix {
+        inherit (super) fetchPypi buildPythonPackage;
+        inherit lib;
+
+        # test deps
+        inherit (super) nose;
+        inherit hidapi;
       };
     };
   };
@@ -27,5 +35,5 @@ py3.pkgs.buildPythonPackage rec {
       substituteInPlace setup.py --replace "'dbus-python'," ""
   '';
 
-  buildInputs = with py3.pkgs; [ hidapi aioconsole dbus-python crc8 ];
+  buildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 ];
 }
