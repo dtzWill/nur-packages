@@ -34,7 +34,7 @@ let
             substituteInPlace setup.py --replace "'dbus-python'," ""
         '';
 
-        propagatedBuildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 ];
+        propagatedBuildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 setuptools ];
       });
     };
   };
