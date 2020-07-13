@@ -18,7 +18,7 @@ let
     };
   };
 in
-py3.pkgs.buildPythonPackage rec {
+py3.pkgs.buildPythonApplication rec {
   pname = "joycontrol";
   version = "unstable-2020-07-11";
 
