@@ -195,5 +195,6 @@ in let toplevel = {
   // { zps = pkgs.callPackage ./pkgs/zps { }; }
   // { yarpgen = pkgs.callPackage ./pkgs/yarpgen { }; }
   // { yubikey-touch-detector = pkgs.callPackage ./pkgs/yubikey-touch-detector { }; }
+  // { joycontrol = pkgs.callPackage ./pkgs/joycontrol { }; }
   ));
 }; in toplevel.lib.recurseIntoAttrs toplevel #  // toplevel.pkgs
