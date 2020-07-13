@@ -1,4 +1,4 @@
-{ stdenv, python3Full, fetchFromGitHub, lib, hidapi, bluez }:
+{ stdenv, python3Full, fetchFromGitHub, lib, hidapi, bluez, fetchpatch }:
 
 let
   common = rec {
@@ -40,6 +40,20 @@ let
               "run_system_command(f'hciconfig" \
               "run_system_command(f'${bluez_with_hciconfig}/bin/hciconfig"
           '';
+
+        patches = [
+          (fetchpatch {
+            name = "fix_device_class.patch";
+            url = "https://github.com/mart1nro/joycontrol/commit/adfb907919e9e6ff16508f7a1c7b845ef5580f19.patch";
+            sha256 = "0wjgr49ajvb1whqn37x77kzvld4czhmy90cwwvyhpp9a6yg1x80j";
+          })
+          (fetchpatch {
+            name = "botw_comms.patch";
+            url = "https://github.com/mart1nro/joycontrol/commit/fc6270e339ce57ec36ecefd4322e21e177d2770b.patch";
+            sha256 = "0c1flmv6h6xmlxgis6cy1grclq5gbvw5kyihxbn6kg8yk4lnwy3j";
+          })
+        ];
+
 
         propagatedBuildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 setuptools ];
       });
