@@ -1,4 +1,4 @@
-{ stdenv, python3Full, fetchFromGitHub, lib, hidapi }:
+{ stdenv, python3Full, fetchFromGitHub, lib, hidapi, bluez }:
 
 let
   common = rec {
@@ -28,16 +28,26 @@ let
 
       ## library
       joycontrol = self.buildPythonPackage (common // {
-        # dbus-python is correctly passed in propagatedBuildInputs, but for some reason setup.py complains.
-        # The wrapped terminator has the correct path added, so ignore this.
-        postPatch = ''
+        postPatch =
+          # dbus-python is correctly passed in propagatedBuildInputs, but for some reason setup.py complains.
+          # The wrapped terminator has the correct path added, so ignore this.
+          ''
             substituteInPlace setup.py --replace "'dbus-python'," ""
-        '';
+          ''
+          # hciconfig
+          + ''
+            substituteInPlace joytool/device.py --replace \
+              "run_system_command(f'hciconfig" \
+              "run_system_command(f'${bluez_with_hciconfig}/bin/hciconfig"
+          '';
 
         propagatedBuildInputs = with py3.pkgs; [ hid aioconsole dbus-python crc8 setuptools ];
       });
     };
   };
+  bluez_with_hciconfig = bluez.overrideAttrs (o: {
+    configureFlags = o.configureFlags or [] ++ [ "--enable-deprecated" ];
+  });
 in
 
 stdenv.mkDerivation (common // {
