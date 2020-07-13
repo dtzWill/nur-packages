@@ -1,4 +1,4 @@
-{ stdenv, python3, fetchFromGitHub, lib, hidapi }:
+{ stdenv, python3Full, fetchFromGitHub, lib, hidapi }:
 
 let
   common = rec {
@@ -11,7 +11,7 @@ let
       sha256 = "0s2aknsssafk7riyzp71iblb7rq7myyg1aq51jc5jfdqkd3ljrnb";
     };
   };
-  py3 = python3.override {
+  py3 = python3Full.override {
     packageOverrides = self: super: {
       crc8 = import ./py-crc8.nix {
         inherit (self) fetchPypi buildPythonPackage;
