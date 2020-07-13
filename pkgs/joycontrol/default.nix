@@ -42,11 +42,7 @@ let
           '';
 
         patches = [
-          (fetchpatch {
-            name = "fix_device_class.patch";
-            url = "https://github.com/mart1nro/joycontrol/commit/adfb907919e9e6ff16508f7a1c7b845ef5580f19.patch";
-            sha256 = "0wjgr49ajvb1whqn37x77kzvld4czhmy90cwwvyhpp9a6yg1x80j";
-          })
+          ./0001-changed-order-of-device-class-setting.patch
           (fetchpatch {
             name = "botw_comms.patch";
             url = "https://github.com/mart1nro/joycontrol/commit/fc6270e339ce57ec36ecefd4322e21e177d2770b.patch";
