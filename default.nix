@@ -185,7 +185,6 @@ in let toplevel = {
     });
   }
   // (pkgs.callPackages ./pkgs/dg { })
-  // { iosevka-term-styles = pkgs.callPackages ./pkgs/iosevka-term { }; }
   // { hack = pkgs.callPackage ./pkgs/hack { }; }
   // { source-code-pro-variable = pkgs.callPackage ./pkgs/source-code-pro-variable { }; }
   // (pkgs.callPackages ./pkgs/xi { })
