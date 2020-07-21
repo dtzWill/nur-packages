@@ -2,6 +2,10 @@
 
 let
   svfs = rec {
+    #"4" = {
+    #  path = ./4.nix;
+    #  llvmPackages = pkgs.llvmPackages_4;
+    #};
     "6" = {
       path = ./6.nix;
       llvmPackages = pkgs.llvmPackages_6;
@@ -14,11 +18,6 @@ let
     # matching what we do for 4 and 6.
     # (for use when it matters LLVM7 is used, not 8 or w/e)
     "7" = master;
-  } // lib.optionalAttrs (pkgs ? llvmPackages_4) {
-    "4" = {
-      path = ./4.nix;
-      llvmPackages = pkgs.llvmPackages_4;
-    };
   };
   mkPkgs = info: lib.recurseIntoAttrs rec {
     svf = callPackage info.path { inherit (info.llvmPackages) llvm; };

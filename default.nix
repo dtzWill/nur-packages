@@ -188,7 +188,7 @@ in let toplevel = {
   // { hack = pkgs.callPackage ./pkgs/hack { }; }
   // { source-code-pro-variable = pkgs.callPackage ./pkgs/source-code-pro-variable { }; }
   // (pkgs.callPackages ./pkgs/xi { })
-  // (pkgs1909.callPackages ./pkgs/svf { lib = pkgs1909.lib // toplevel.lib; /* FIXME */ })
+  // (pkgs.callPackages ./pkgs/svf { lib = pkgs.lib // toplevel.lib; /* FIXME */ })
   // { xlayoutdisplay = pkgs.callPackage ./pkgs/xlayoutdisplay { }; }
   // { rofi-tab-switcher = pkgs.callPackage ./pkgs/rofi-tab-switcher { }; }
   // { zps = pkgs.callPackage ./pkgs/zps { }; }
